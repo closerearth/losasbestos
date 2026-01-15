@@ -1,0 +1,2187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASBESTOS CIGARETTE FILTERS — Kent Micronite 1952-1956</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --smoke: #8a9090;
+            --ash: #4a4a4a;
+            --ember: #e63;
+            --cancer-warning: #c41;
+            --filter-white: #e8e4d8;
+            --tar: #1a1410;
+            --nicotine: #c9b896;
+            --void: #080808;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(180deg, var(--void) 0%, #0c0a08 50%, var(--tar) 100%);
+            min-height: 100vh;
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--smoke);
+            overflow-x: hidden;
+        }
+
+        /* Smoke particles */
+        .smoke-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        .smoke {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, var(--smoke) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: rise 8s ease-out infinite;
+        }
+
+        @keyframes rise {
+            0% { 
+                transform: translateY(0) translateX(0) scale(1); 
+                opacity: 0.6; 
+            }
+            50% { 
+                transform: translateY(-200px) translateX(30px) scale(2); 
+                opacity: 0.3; 
+            }
+            100% { 
+                transform: translateY(-400px) translateX(-20px) scale(3); 
+                opacity: 0; 
+            }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(30,20,16,0.9) 0%, rgba(0,0,0,0.7) 100%);
+            border: 1px solid var(--ash);
+            position: relative;
+        }
+
+        .header::before {
+            content: 'SURGEON GENERAL WARNING';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--cancer-warning);
+            color: #fff;
+            padding: 0.2rem 1rem;
+            font-size: 0.6rem;
+            font-weight: bold;
+            letter-spacing: 0.15em;
+        }
+
+        .brand {
+            font-size: 0.7rem;
+            color: var(--nicotine);
+            letter-spacing: 0.4em;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+        }
+
+        .title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(2rem, 7vw, 4rem);
+            color: var(--filter-white);
+            text-shadow: 
+                0 0 30px rgba(230,102,51,0.3),
+                0 0 60px rgba(196,17,17,0.2);
+            letter-spacing: 0.08em;
+            margin-bottom: 0.3rem;
+            line-height: 1;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: var(--ember);
+            letter-spacing: 0.2em;
+        }
+
+        .years {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: var(--ash);
+            margin-top: 0.5rem;
+        }
+
+        /* Main layout */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Cigarette visualization */
+        .visual-panel {
+            background: linear-gradient(180deg, rgba(26,20,16,0.8) 0%, rgba(0,0,0,0.6) 100%);
+            border: 1px solid var(--ash);
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cigarette-svg {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(230,102,51,0.4));
+            transition: all 0.3s ease;
+        }
+
+        .cigarette-svg.beat {
+            filter: drop-shadow(0 0 40px rgba(230,102,51,0.8));
+        }
+
+        .cigarette-svg.bass-hit {
+            filter: drop-shadow(0 0 60px rgba(196,17,17,0.9)) brightness(1.1);
+        }
+
+        /* Facts panel */
+        .facts-panel {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid var(--ash);
+            padding: 1rem;
+            margin-top: 1rem;
+            width: 100%;
+            font-size: 0.65rem;
+        }
+
+        .fact-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .fact-label {
+            color: var(--smoke);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .fact-value {
+            color: var(--nicotine);
+        }
+
+        .fact-value.danger {
+            color: var(--cancer-warning);
+        }
+
+        /* Controls */
+        .controls-panel {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid var(--ash);
+            padding: 1.5rem;
+        }
+
+        .play-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--ash);
+        }
+
+        .play-btn {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--ember) 0%, #8a2a1a 100%);
+            border: 2px solid var(--ember);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(230,102,51,0.5);
+        }
+
+        .play-btn.playing {
+            background: linear-gradient(135deg, var(--cancer-warning) 0%, #6a1a0a 100%);
+            border-color: var(--cancer-warning);
+            animation: burn 0.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes burn {
+            from { box-shadow: 0 0 20px rgba(230,102,51,0.4); }
+            to { box-shadow: 0 0 40px rgba(196,17,17,0.7); }
+        }
+
+        .play-btn svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--filter-white);
+        }
+
+        .tempo-control {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .tempo-label {
+            font-size: 0.6rem;
+            color: var(--smoke);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .tempo-value {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--ember);
+        }
+
+        .tempo-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            height: 3px;
+            background: var(--ash);
+            border-radius: 2px;
+        }
+
+        .tempo-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--ember);
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        /* MIXER */
+        .section-title {
+            font-size: 0.65rem;
+            color: var(--ember);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.4rem;
+            border-bottom: 1px solid var(--ember);
+        }
+
+        .mixer-grid {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--ash);
+            border-radius: 3px;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mixer-header {
+            display: grid;
+            grid-template-columns: 55px repeat(4, 1fr);
+            gap: 0.4rem;
+            padding: 0.25rem 0.4rem;
+            border-bottom: 1px solid var(--ash);
+            margin-bottom: 0.25rem;
+        }
+
+        .mixer-label {
+            font-size: 0.45rem;
+            color: var(--smoke);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+        }
+
+        .mixer-label-wide {
+            font-size: 0.45rem;
+            color: var(--smoke);
+            text-transform: uppercase;
+        }
+
+        .mixer-row {
+            display: grid;
+            grid-template-columns: 55px repeat(4, 1fr);
+            gap: 0.4rem;
+            padding: 0.35rem 0.4rem;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+            transition: background 0.15s ease;
+        }
+
+        .mixer-row:hover {
+            background: rgba(230,102,51,0.08);
+        }
+
+        .mixer-row:last-child {
+            border-bottom: none;
+        }
+
+        .channel-name {
+            font-size: 0.55rem;
+            font-weight: 600;
+            color: var(--nicotine);
+            letter-spacing: 0.03em;
+        }
+
+        /* Mini knobs */
+        .mini-knob {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #2a2420, #1a1410);
+            border: 1px solid var(--ash);
+            position: relative;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: all 0.15s ease;
+        }
+
+        .mini-knob:hover {
+            border-color: var(--ember);
+            box-shadow: 0 0 8px rgba(230,102,51,0.3);
+        }
+
+        .mini-knob.dragging {
+            border-color: var(--cancer-warning);
+            box-shadow: 0 0 12px rgba(196,17,17,0.5);
+        }
+
+        .mini-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 35%;
+            background: var(--ember);
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(0deg);
+            border-radius: 1px;
+        }
+
+        /* Bass selector */
+        .bass-selector {
+            display: flex;
+            gap: 0.4rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.75rem;
+        }
+
+        .bass-btn {
+            padding: 0.35rem 0.7rem;
+            font-size: 0.55rem;
+            font-family: 'IBM Plex Mono', monospace;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--ash);
+            color: var(--smoke);
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.2s ease;
+        }
+
+        .bass-btn:hover {
+            border-color: var(--ember);
+        }
+
+        .bass-btn.active {
+            background: var(--ember);
+            color: var(--void);
+            border-color: var(--ember);
+        }
+
+        /* Regular knobs */
+        .knob-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
+        .knob-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .knob {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(145deg, #2a2420, #1a1410);
+            border: 2px solid var(--ash);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .knob:hover {
+            border-color: var(--ember);
+            box-shadow: 0 0 12px rgba(230,102,51,0.3);
+        }
+
+        .knob.dragging {
+            border-color: var(--cancer-warning);
+            box-shadow: 0 0 18px rgba(196,17,17,0.5);
+        }
+
+        .knob-ring {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            right: 3px;
+            bottom: 3px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .knob-indicator {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 2px;
+            height: 38%;
+            background: var(--ember);
+            transform-origin: bottom center;
+            transform: translateX(-50%) rotate(0deg);
+            border-radius: 1px;
+        }
+
+        .knob-label {
+            font-size: 0.5rem;
+            color: var(--smoke);
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+            text-align: center;
+        }
+
+        .knob-value {
+            font-size: 0.45rem;
+            color: var(--ash);
+        }
+
+        /* Voice section */
+        .voice-section {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--ash);
+        }
+
+        .voice-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .voice-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--ash);
+            color: var(--smoke);
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: all 0.2s ease;
+        }
+
+        .voice-btn:hover {
+            border-color: var(--ember);
+        }
+
+        .voice-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .voice-btn.active {
+            background: var(--ember);
+            color: var(--void);
+            border-color: var(--ember);
+        }
+
+        .voice-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: currentColor;
+        }
+
+        .voice-progress {
+            flex: 1;
+            min-width: 80px;
+            height: 3px;
+            background: var(--ash);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .voice-progress-bar {
+            height: 100%;
+            width: 0%;
+            background: var(--ember);
+            transition: width 0.1s linear;
+        }
+
+        .voice-status {
+            font-size: 0.55rem;
+            color: var(--smoke);
+        }
+
+        /* Record section */
+        .record-section {
+            margin-top: 1rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid var(--ash);
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .record-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(0,0,0,0.5);
+            border: 2px solid var(--cancer-warning);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+        }
+
+        .record-btn:hover {
+            box-shadow: 0 0 15px rgba(196,17,17,0.4);
+        }
+
+        .record-btn.recording {
+            background: var(--cancer-warning);
+            animation: record-pulse 0.8s ease-in-out infinite;
+        }
+
+        @keyframes record-pulse {
+            0%, 100% { box-shadow: 0 0 10px rgba(196,17,17,0.5); }
+            50% { box-shadow: 0 0 25px rgba(196,17,17,0.9); }
+        }
+
+        .record-btn svg {
+            width: 14px;
+            height: 14px;
+            fill: var(--cancer-warning);
+        }
+
+        .record-btn.recording svg {
+            fill: white;
+        }
+
+        .record-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.15rem;
+        }
+
+        .record-status {
+            font-size: 0.55rem;
+            color: var(--smoke);
+        }
+
+        .record-status.recording {
+            color: var(--cancer-warning);
+        }
+
+        .record-time {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.9rem;
+            color: var(--ember);
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.35rem 0.7rem;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid var(--ash);
+            color: var(--smoke);
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.55rem;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover:not(:disabled) {
+            border-color: var(--ember);
+        }
+
+        .download-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .download-btn svg {
+            width: 12px;
+            height: 12px;
+            fill: currentColor;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.6rem;
+            color: var(--ash);
+            border-top: 1px solid var(--ash);
+            margin-top: 2rem;
+        }
+
+        .footer-warning {
+            color: var(--cancer-warning);
+            margin-bottom: 0.4rem;
+            font-weight: 600;
+        }
+    </style>
+    <style>
+        /* Track wrapper styles matching index */
+        .track-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10000;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 204, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            font-family: 'Space Mono', monospace;
+        }
+
+        .track-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .track-nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: relative;
+            z-index: 1;
+        }
+
+        .track-nav-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ff5500;
+            text-shadow: 0 0 10px rgba(255, 85, 0, 0.3);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .track-nav-title:hover {
+            color: #ffcc00;
+            text-shadow: 0 0 15px rgba(255, 204, 0, 0.5);
+        }
+
+        .track-nav-back {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.5);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.4rem 0.8rem;
+            border-radius: 2px;
+        }
+
+        .track-nav-back:hover {
+            color: #ff5500;
+            border-color: rgba(255, 85, 0, 0.3);
+            background: rgba(255, 85, 0, 0.05);
+        }
+
+        .track-content-wrapper {
+            margin-top: 70px; /* Space for fixed header */
+        }
+
+        @media (max-width: 768px) {
+            .track-wrapper {
+                padding: 0.8rem 1rem;
+            }
+
+            .track-nav-title {
+                font-size: 0.85rem;
+            }
+
+            .track-nav-back {
+                font-size: 0.65rem;
+                padding: 0.3rem 0.6rem;
+            }
+
+            .track-content-wrapper {
+                margin-top: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="track-wrapper">
+        <nav class="track-nav">
+            <a href="../" class="track-nav-title">Los Asbestos</a>
+            <a href="../" class="track-nav-back">← Index</a>
+        </nav>
+    </div>
+    <div class="track-content-wrapper">
+    <div class="smoke-container" id="smokeContainer"></div>
+
+    <div class="container">
+        <header class="header">
+            <div class="brand">Lorillard Tobacco Company presents</div>
+            <h1 class="title">ASBESTOS CIGARETTE FILTERS</h1>
+            <div class="subtitle">KENT MICRONITE • CROCIDOLITE ASBESTOS</div>
+            <div class="years">1952 — 1956</div>
+        </header>
+
+        <div class="main-content">
+            <div class="visual-panel">
+                <!-- Cigarette SVG -->
+                <svg class="cigarette-svg" id="cigaretteSvg" viewBox="0 0 400 150" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="filterGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e8e4d8"/>
+                            <stop offset="50%" style="stop-color:#c9b896"/>
+                            <stop offset="100%" style="stop-color:#a89876"/>
+                        </linearGradient>
+                        <linearGradient id="paperGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f5f2eb"/>
+                            <stop offset="100%" style="stop-color:#e8e4d8"/>
+                        </linearGradient>
+                        <linearGradient id="emberGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#ff6633"/>
+                            <stop offset="50%" style="stop-color:#cc3311"/>
+                            <stop offset="100%" style="stop-color:#441100"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Filter (with asbestos!) -->
+                    <rect x="20" y="55" width="80" height="40" rx="2" fill="url(#filterGrad)" stroke="#a89876" stroke-width="1"/>
+                    <text x="60" y="78" text-anchor="middle" fill="#8a7a5a" font-family="Arial" font-size="8" font-weight="bold">MICRONITE</text>
+                    
+                    <!-- Asbestos fibers inside filter (danger!) -->
+                    <g opacity="0.3">
+                        <line x1="30" y1="60" x2="40" y2="70" stroke="#666" stroke-width="0.5"/>
+                        <line x1="50" y1="65" x2="60" y2="80" stroke="#666" stroke-width="0.5"/>
+                        <line x1="70" y1="58" x2="85" y2="75" stroke="#666" stroke-width="0.5"/>
+                        <line x1="35" y1="85" x2="55" y2="70" stroke="#666" stroke-width="0.5"/>
+                        <line x1="75" y1="90" x2="90" y2="72" stroke="#666" stroke-width="0.5"/>
+                    </g>
+                    
+                    <!-- Paper tube -->
+                    <rect x="100" y="55" width="250" height="40" fill="url(#paperGrad)" stroke="#d8d4c8" stroke-width="1"/>
+                    
+                    <!-- Brand ring -->
+                    <rect x="100" y="55" width="20" height="40" fill="#c9b896" stroke="#a89876" stroke-width="1"/>
+                    
+                    <!-- Burning end -->
+                    <rect x="350" y="55" width="30" height="40" rx="2" fill="url(#emberGrad)" filter="url(#glow)">
+                        <animate attributeName="opacity" values="0.8;1;0.8" dur="0.5s" repeatCount="indefinite"/>
+                    </rect>
+                    
+                    <!-- Ash -->
+                    <rect x="375" y="55" width="15" height="40" rx="2" fill="#4a4a4a" opacity="0.8"/>
+                    
+                    <!-- Smoke wisps -->
+                    <g class="smoke-wisps" opacity="0.4">
+                        <path d="M385 50 Q390 30 385 10" stroke="#aaa" stroke-width="2" fill="none" opacity="0.5">
+                            <animate attributeName="d" values="M385 50 Q390 30 385 10;M385 50 Q380 25 390 5;M385 50 Q390 30 385 10" dur="3s" repeatCount="indefinite"/>
+                        </path>
+                        <path d="M380 45 Q375 20 385 0" stroke="#999" stroke-width="1.5" fill="none" opacity="0.4">
+                            <animate attributeName="d" values="M380 45 Q375 20 385 0;M380 45 Q390 15 375 -5;M380 45 Q375 20 385 0" dur="4s" repeatCount="indefinite"/>
+                        </path>
+                    </g>
+                </svg>
+
+                <div class="facts-panel">
+                    <div class="fact-row">
+                        <span class="fact-label">Years Produced</span>
+                        <span class="fact-value">1952 — 1956</span>
+                    </div>
+                    <div class="fact-row">
+                        <span class="fact-label">Asbestos Type</span>
+                        <span class="fact-value danger">Crocidolite (Blue)</span>
+                    </div>
+                    <div class="fact-row">
+                        <span class="fact-label">Toxicity</span>
+                        <span class="fact-value danger">EXTREME</span>
+                    </div>
+                    <div class="fact-row">
+                        <span class="fact-label">Friable</span>
+                        <span class="fact-value danger">Yes</span>
+                    </div>
+                    <div class="fact-row">
+                        <span class="fact-label">Currently Banned</span>
+                        <span class="fact-value">No (USA)</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="controls-panel">
+                <div class="play-section">
+                    <button class="play-btn" id="playBtn" title="Start/Stop">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </button>
+                    <div class="tempo-control">
+                        <span class="tempo-label">BPM</span>
+                        <span class="tempo-value" id="bpmValue">138</span>
+                        <input type="range" class="tempo-slider" id="bpmSlider" min="100" max="170" value="138">
+                    </div>
+                    <div class="tempo-control">
+                        <span class="tempo-label">Volume</span>
+                        <input type="range" class="tempo-slider" id="volumeSlider" min="0" max="100" value="75">
+                    </div>
+                </div>
+
+                <!-- MIXER -->
+                <div class="section-title">Channel Mixer</div>
+                <div class="mixer-grid">
+                    <div class="mixer-header">
+                        <span class="mixer-label-wide">SRC</span>
+                        <span class="mixer-label">Hi</span>
+                        <span class="mixer-label">Mid</span>
+                        <span class="mixer-label">Lo</span>
+                        <span class="mixer-label">Vol</span>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">KICK</span>
+                        <div class="mini-knob" data-param="kickHi" data-value="45"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="kickMid" data-value="50"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="kickLo" data-value="80"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="kickVol" data-value="85"><div class="mini-indicator"></div></div>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">CLAP</span>
+                        <div class="mini-knob" data-param="clapHi" data-value="50"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="clapMid" data-value="55"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="clapLo" data-value="35"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="clapVol" data-value="60"><div class="mini-indicator"></div></div>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">HAT</span>
+                        <div class="mini-knob" data-param="hatHi" data-value="60"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="hatMid" data-value="40"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="hatLo" data-value="25"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="hatVol" data-value="50"><div class="mini-indicator"></div></div>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">BASS</span>
+                        <div class="mini-knob" data-param="bassHi" data-value="35"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="bassMid" data-value="60"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="bassLo" data-value="85"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="bassVol" data-value="80"><div class="mini-indicator"></div></div>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">PAD</span>
+                        <div class="mini-knob" data-param="padHi" data-value="45"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="padMid" data-value="50"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="padLo" data-value="55"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="padVol" data-value="35"><div class="mini-indicator"></div></div>
+                    </div>
+                    <div class="mixer-row">
+                        <span class="channel-name">VOICE</span>
+                        <div class="mini-knob" data-param="voiceHi" data-value="50"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="voiceMid" data-value="55"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="voiceLo" data-value="50"><div class="mini-indicator"></div></div>
+                        <div class="mini-knob" data-param="voiceVol" data-value="70"><div class="mini-indicator"></div></div>
+                    </div>
+                </div>
+
+                <!-- BASS ENGINE -->
+                <div class="section-title">Bass Engine</div>
+                <div class="bass-selector">
+                    <button class="bass-btn" data-bass="drone">Drone</button>
+                    <button class="bass-btn active" data-bass="industrial">Industrial</button>
+                    <button class="bass-btn" data-bass="acid">Acid</button>
+                    <button class="bass-btn" data-bass="noise">Noise</button>
+                    <button class="bass-btn" data-bass="sub">Sub</button>
+                </div>
+                <div class="knob-row">
+                    <div class="knob-container">
+                        <div class="knob" data-param="bassFilter" data-value="40">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Filter</div>
+                        <div class="knob-value">40</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="bassReso" data-value="70">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Reso</div>
+                        <div class="knob-value">70</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="bassEnvMod" data-value="55">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Env</div>
+                        <div class="knob-value">55</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="bassDecay" data-value="60">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Decay</div>
+                        <div class="knob-value">60</div>
+                    </div>
+                </div>
+
+                <!-- MASTER FX -->
+                <div class="section-title" style="margin-top:1rem;">Darkness</div>
+                <div class="knob-row">
+                    <div class="knob-container">
+                        <div class="knob" data-param="reverbMix" data-value="45">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Reverb</div>
+                        <div class="knob-value">45</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="delayMix" data-value="35">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Delay</div>
+                        <div class="knob-value">35</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="distortion" data-value="55">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Crush</div>
+                        <div class="knob-value">55</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="darkness" data-value="70">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Dark</div>
+                        <div class="knob-value">70</div>
+                    </div>
+                    <div class="knob-container">
+                        <div class="knob" data-param="swing" data-value="10">
+                            <div class="knob-ring"></div>
+                            <div class="knob-indicator"></div>
+                        </div>
+                        <div class="knob-label">Swing</div>
+                        <div class="knob-value">10</div>
+                    </div>
+                </div>
+
+                <!-- Voice -->
+                <div class="voice-section">
+                    <div class="section-title">Audio File</div>
+                    <div class="voice-controls">
+                        <input type="file" id="voiceFileInput" accept="audio/*" style="display:none">
+                        <button class="voice-btn" id="voiceLoadBtn">
+                            <svg viewBox="0 0 24 24"><path d="M9 16h6v-6h4l-7-7-7 7h4v6zm-4 2h14v2H5v-2z"/></svg>
+                            <span>LOAD</span>
+                        </button>
+                        <button class="voice-btn" id="voiceBtn" disabled>
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                            <span>PLAY</span>
+                        </button>
+                        <div class="voice-progress">
+                            <div class="voice-progress-bar" id="voiceProgressBar"></div>
+                        </div>
+                        <span class="voice-status" id="voiceStatus">No file</span>
+                    </div>
+                </div>
+
+                <!-- Record -->
+                <div class="record-section">
+                    <button class="record-btn" id="recordBtn" title="Record WAV">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg>
+                    </button>
+                    <div class="record-info">
+                        <span class="record-status" id="recordStatus">Ready</span>
+                        <span class="record-time" id="recordTime">00:00</span>
+                    </div>
+                    <button class="download-btn" id="downloadBtn" disabled>
+                        <svg viewBox="0 0 24 24"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+                        <span>WAV</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-warning">CAUSES MESOTHELIOMA, LUNG CANCER, ASBESTOSIS</div>
+            <div>H&V Specialties / Hollingsworth & Vose Company • Crocidolite is one of the most toxic types of asbestos</div>
+        </footer>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // ASBESTOS CIGARETTE FILTERS — ULTRA DARK INDUSTRIAL TECHNO
+        // 138 BPM, D minor, Maximum Darkness
+        // ═══════════════════════════════════════════════════════════════════
+
+        // Smoke particles
+        const smokeContainer = document.getElementById('smokeContainer');
+        for (let i = 0; i < 30; i++) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke';
+            smoke.style.left = (30 + Math.random() * 40) + '%';
+            smoke.style.bottom = '0';
+            smoke.style.animationDelay = Math.random() * 8 + 's';
+            smoke.style.animationDuration = (6 + Math.random() * 4) + 's';
+            smokeContainer.appendChild(smoke);
+        }
+
+        // Audio state
+        let audioCtx = null;
+        let masterGain = null;
+        let masterOutput = null;
+        let distortionNode = null;
+        let compressor = null;
+        let reverbGain = null;
+        let delayNode = null;
+        let delayFeedback = null;
+        let darkFilter = null;
+
+        let isPlaying = false;
+        let bpm = 138;
+        let currentStep = 0;
+        let schedulerInterval = null;
+        let nextStepTime = 0;
+
+        let currentBassType = 'industrial';
+
+        // Synth parameters
+        const synthParams = {
+            swing: 0.1,
+            bassFilter: 600,
+            bassReso: 18,
+            bassEnvMod: 2200,
+            bassDecay: 0.4,
+            reverbMix: 0.4,
+            delayMix: 0.3,
+            delayTime: 0.435,
+            distAmount: 30,
+            darkness: 2500,
+            // Channel EQ/Vol
+            kickHi: 0.45, kickMid: 0.5, kickLo: 0.8, kickVol: 0.85,
+            clapHi: 0.5, clapMid: 0.55, clapLo: 0.35, clapVol: 0.6,
+            hatHi: 0.6, hatMid: 0.4, hatLo: 0.25, hatVol: 0.5,
+            bassHi: 0.35, bassMid: 0.6, bassLo: 0.85, bassVol: 0.8,
+            padHi: 0.45, padMid: 0.5, padLo: 0.55, padVol: 0.35,
+            voiceHi: 0.5, voiceMid: 0.55, voiceLo: 0.5, voiceVol: 0.7
+        };
+
+        const params = {
+            kickHi: 45, kickMid: 50, kickLo: 80, kickVol: 85,
+            clapHi: 50, clapMid: 55, clapLo: 35, clapVol: 60,
+            hatHi: 60, hatMid: 40, hatLo: 25, hatVol: 50,
+            bassHi: 35, bassMid: 60, bassLo: 85, bassVol: 80,
+            padHi: 45, padMid: 50, padLo: 55, padVol: 35,
+            voiceHi: 50, voiceMid: 55, voiceLo: 50, voiceVol: 70,
+            bassFilter: 40, bassReso: 70, bassEnvMod: 55, bassDecay: 60,
+            reverbMix: 45, delayMix: 35, distortion: 55, darkness: 70, swing: 10
+        };
+
+        const playBtn = document.getElementById('playBtn');
+        const bpmSlider = document.getElementById('bpmSlider');
+        const bpmValue = document.getElementById('bpmValue');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const cigaretteSvg = document.getElementById('cigaretteSvg');
+
+        // D Phrygian - even darker
+        const scale = [
+            73.42,   // D2
+            77.78,   // Eb2
+            87.31,   // F2
+            98.00,   // G2
+            103.83,  // Ab2
+            116.54,  // Bb2
+            130.81,  // C3
+            146.83   // D3
+        ];
+
+        // Patterns - more sparse, industrial
+        const kickPattern =  [1,0,0,0, 1,0,0,0, 1,0,0,0, 1,0,1,0];
+        const clapPattern =  [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,1];
+        const hatPattern =   [1,0,1,0, 1,0,1,0, 1,0,1,0, 1,1,1,0];
+        const bassPattern =  [1,0,0,1, 0,0,1,0, 0,1,0,0, 1,0,0,1];
+        const bassNotes =    [0,0,0,3, 0,0,5,0, 0,1,0,0, 0,0,0,7];
+        const accentPattern= [1,0,0,0, 0,0,1,0, 0,0,0,0, 1,0,0,1];
+
+        // Distortion curve
+        function makeDistortionCurve(amount) {
+            const samples = 44100;
+            const curve = new Float32Array(samples);
+            const deg = Math.PI / 180;
+            for (let i = 0; i < samples; i++) {
+                const x = (i * 2) / samples - 1;
+                curve[i] = ((3 + amount) * x * 20 * deg) / (Math.PI + amount * Math.abs(x));
+            }
+            return curve;
+        }
+
+        // 3-band EQ
+        function createEQ(hi, mid, lo) {
+            const hiNode = audioCtx.createBiquadFilter();
+            hiNode.type = 'highshelf';
+            hiNode.frequency.value = 4000;
+            hiNode.gain.value = (hi - 0.5) * 12;
+
+            const midNode = audioCtx.createBiquadFilter();
+            midNode.type = 'peaking';
+            midNode.frequency.value = 1000;
+            midNode.Q.value = 1;
+            midNode.gain.value = (mid - 0.5) * 12;
+
+            const loNode = audioCtx.createBiquadFilter();
+            loNode.type = 'lowshelf';
+            loNode.frequency.value = 200;
+            loNode.gain.value = (lo - 0.5) * 12;
+
+            hiNode.connect(midNode);
+            midNode.connect(loNode);
+
+            return { input: hiNode, output: loNode };
+        }
+
+        // Initialize audio
+        function initAudio() {
+            if (audioCtx) return;
+
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+            masterOutput = audioCtx.createGain();
+            masterOutput.gain.value = 1.0;
+            masterOutput.connect(audioCtx.destination);
+
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0.55;
+
+            // Heavy distortion
+            distortionNode = audioCtx.createWaveShaper();
+            distortionNode.curve = makeDistortionCurve(synthParams.distAmount);
+            distortionNode.oversample = '4x';
+
+            // Darkness filter
+            darkFilter = audioCtx.createBiquadFilter();
+            darkFilter.type = 'lowpass';
+            darkFilter.frequency.value = synthParams.darkness;
+            darkFilter.Q.value = 0.5;
+
+            // Compressor - heavy
+            compressor = audioCtx.createDynamicsCompressor();
+            compressor.threshold.value = -18;
+            compressor.knee.value = 3;
+            compressor.ratio.value = 10;
+            compressor.attack.value = 0.001;
+            compressor.release.value = 0.08;
+
+            // Delay - longer, darker
+            delayNode = audioCtx.createDelay(2.0);
+            delayNode.delayTime.value = synthParams.delayTime;
+
+            delayFeedback = audioCtx.createGain();
+            delayFeedback.gain.value = 0.5;
+
+            const delayFilter = audioCtx.createBiquadFilter();
+            delayFilter.type = 'lowpass';
+            delayFilter.frequency.value = 1500;
+
+            const delayWet = audioCtx.createGain();
+            delayWet.gain.value = synthParams.delayMix;
+
+            // Reverb
+            reverbGain = audioCtx.createGain();
+            reverbGain.gain.value = synthParams.reverbMix;
+
+            // Chain: masterGain -> distortion -> darkFilter -> compressor -> masterOutput
+            masterGain.connect(distortionNode);
+            distortionNode.connect(darkFilter);
+            darkFilter.connect(compressor);
+            compressor.connect(masterOutput);
+
+            // Delay chain
+            masterGain.connect(delayNode);
+            delayNode.connect(delayFilter);
+            delayFilter.connect(delayFeedback);
+            delayFeedback.connect(delayNode);
+            delayNode.connect(delayWet);
+            delayWet.connect(masterOutput);
+
+            createDarkReverb();
+        }
+
+        function createDarkReverb() {
+            // Very dark, long reverb
+            const delays = [0.05, 0.11, 0.17, 0.23, 0.31, 0.43, 0.59];
+            delays.forEach((time, i) => {
+                const delay = audioCtx.createDelay();
+                delay.delayTime.value = time;
+
+                const feedback = audioCtx.createGain();
+                feedback.gain.value = 0.35 - (i * 0.035);
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 1000 - (i * 100);
+
+                reverbGain.connect(delay);
+                delay.connect(filter);
+                filter.connect(feedback);
+                feedback.connect(delay);
+                filter.connect(masterGain);
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // DRUM SYNTHESIS - Industrial
+        // ═══════════════════════════════════════════════════════════════════
+
+        function playKick(time) {
+            triggerAnimation('beat');
+
+            const osc = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            // Main thump - lower, longer
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(160, time);
+            osc.frequency.exponentialRampToValueAtTime(30, time + 0.12);
+
+            // Sub layer
+            osc2.type = 'sine';
+            osc2.frequency.value = 40;
+
+            const vol = synthParams.kickVol;
+            gain.gain.setValueAtTime(vol, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.5);
+
+            const subGain = audioCtx.createGain();
+            subGain.gain.setValueAtTime(vol * 0.5, time);
+            subGain.gain.exponentialRampToValueAtTime(0.01, time + 0.4);
+
+            // Transient click
+            const click = audioCtx.createOscillator();
+            const clickGain = audioCtx.createGain();
+            click.type = 'square';
+            click.frequency.value = 2500;
+            clickGain.gain.setValueAtTime(0.2 * vol, time);
+            clickGain.gain.exponentialRampToValueAtTime(0.01, time + 0.008);
+
+            const eq = createEQ(synthParams.kickHi, synthParams.kickMid, synthParams.kickLo);
+
+            osc.connect(gain);
+            osc2.connect(subGain);
+            click.connect(clickGain);
+            gain.connect(eq.input);
+            subGain.connect(eq.input);
+            clickGain.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            osc.start(time);
+            osc2.start(time);
+            click.start(time);
+            osc.stop(time + 0.6);
+            osc2.stop(time + 0.5);
+            click.stop(time + 0.02);
+        }
+
+        function playClap(time) {
+            // Industrial clap - metallic
+            const bufferSize = audioCtx.sampleRate * 0.2;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            for (let i = 0; i < bufferSize; i++) {
+                const env = Math.exp(-i / (bufferSize * 0.08));
+                data[i] = (Math.random() * 2 - 1) * env;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'bandpass';
+            filter.frequency.value = 1800;
+            filter.Q.value = 3;
+
+            const vol = synthParams.clapVol;
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0.5 * vol, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.15);
+
+            const eq = createEQ(synthParams.clapHi, synthParams.clapMid, synthParams.clapLo);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+            eq.output.connect(reverbGain);
+
+            noise.start(time);
+        }
+
+        function playHat(time, open = false) {
+            const bufferSize = audioCtx.sampleRate * (open ? 0.25 : 0.04);
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'highpass';
+            filter.frequency.value = 9000;
+
+            const vol = synthParams.hatVol;
+            const gain = audioCtx.createGain();
+            const decay = open ? 0.2 : 0.04;
+            gain.gain.setValueAtTime(0.2 * vol, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + decay);
+
+            const eq = createEQ(synthParams.hatHi, synthParams.hatMid, synthParams.hatLo);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            noise.start(time);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // BASS SYNTHESIS - Ultra Dark
+        // ═══════════════════════════════════════════════════════════════════
+
+        function playBass(freq, time, duration, accent = false) {
+            triggerAnimation('bass-hit');
+
+            switch(currentBassType) {
+                case 'drone': playDroneBass(freq, time, duration, accent); break;
+                case 'industrial': playIndustrialBass(freq, time, duration, accent); break;
+                case 'acid': playAcidBass(freq, time, duration, accent); break;
+                case 'noise': playNoiseBass(freq, time, duration, accent); break;
+                case 'sub': playSubBass(freq, time, duration, accent); break;
+                default: playIndustrialBass(freq, time, duration, accent);
+            }
+        }
+
+        // DRONE - Continuous, evolving, menacing
+        function playDroneBass(freq, time, duration, accent) {
+            const oscs = [];
+            const numOscs = 6;
+            const vol = synthParams.bassVol;
+
+            const gain = audioCtx.createGain();
+            const level = (accent ? 0.35 : 0.25) * vol;
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(level, time + 0.1);
+            gain.gain.setValueAtTime(level * 0.8, time + duration * 0.8);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = synthParams.bassFilter;
+            filter.Q.value = synthParams.bassReso * 0.3;
+
+            // Slow LFO
+            const lfo = audioCtx.createOscillator();
+            const lfoGain = audioCtx.createGain();
+            lfo.frequency.value = 0.2;
+            lfoGain.gain.value = 50;
+            lfo.connect(lfoGain);
+            lfoGain.connect(filter.frequency);
+
+            for (let i = 0; i < numOscs; i++) {
+                const osc = audioCtx.createOscillator();
+                osc.type = i % 2 === 0 ? 'sawtooth' : 'square';
+                osc.frequency.value = freq * (0.5 + Math.random() * 0.02);
+                osc.detune.value = (i - numOscs/2) * 8;
+                osc.connect(filter);
+                osc.start(time);
+                osc.stop(time + duration + 0.1);
+            }
+
+            const eq = createEQ(synthParams.bassHi, synthParams.bassMid, synthParams.bassLo);
+            filter.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+            lfo.start(time);
+            lfo.stop(time + duration + 0.1);
+        }
+
+        // INDUSTRIAL - Harsh, metallic
+        function playIndustrialBass(freq, time, duration, accent) {
+            const osc = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+
+            osc.type = 'sawtooth';
+            osc2.type = 'square';
+
+            // Pitch drop
+            osc.frequency.setValueAtTime(freq * 1.5, time);
+            osc.frequency.exponentialRampToValueAtTime(freq, time + 0.03);
+            osc2.frequency.value = freq * 0.5;
+
+            // Ring mod for metallic
+            const ring = audioCtx.createOscillator();
+            const ringGain = audioCtx.createGain();
+            ring.frequency.value = freq * 2.5;
+            ringGain.gain.value = 0.3;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.Q.value = synthParams.bassReso;
+
+            const envAmount = accent ? synthParams.bassEnvMod * 1.5 : synthParams.bassEnvMod;
+            filter.frequency.setValueAtTime(synthParams.bassFilter + envAmount, time);
+            filter.frequency.exponentialRampToValueAtTime(synthParams.bassFilter * 0.3, time + synthParams.bassDecay);
+
+            const dist = audioCtx.createWaveShaper();
+            dist.curve = makeDistortionCurve(40);
+
+            const vol = synthParams.bassVol;
+            const gain = audioCtx.createGain();
+            const level = (accent ? 0.4 : 0.3) * vol;
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(level, time + 0.003);
+            gain.gain.setValueAtTime(level * 0.7, time + duration * 0.5);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+
+            const eq = createEQ(synthParams.bassHi, synthParams.bassMid, synthParams.bassLo);
+
+            osc.connect(filter);
+            osc2.connect(filter);
+            ring.connect(ringGain);
+            ringGain.connect(filter);
+            filter.connect(dist);
+            dist.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            osc.start(time);
+            osc2.start(time);
+            ring.start(time);
+            osc.stop(time + duration + 0.1);
+            osc2.stop(time + duration + 0.1);
+            ring.stop(time + duration + 0.1);
+        }
+
+        // ACID - Classic 303 squelch
+        function playAcidBass(freq, time, duration, accent) {
+            const osc = audioCtx.createOscillator();
+            osc.type = 'sawtooth';
+
+            osc.frequency.setValueAtTime(freq * 0.5, time);
+            osc.frequency.exponentialRampToValueAtTime(freq, time + 0.02);
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.Q.value = synthParams.bassReso * 1.2;
+
+            const envAmount = accent ? synthParams.bassEnvMod * 2 : synthParams.bassEnvMod;
+            filter.frequency.setValueAtTime(synthParams.bassFilter + envAmount, time);
+            filter.frequency.exponentialRampToValueAtTime(80, time + synthParams.bassDecay);
+
+            const dist = audioCtx.createWaveShaper();
+            dist.curve = makeDistortionCurve(20);
+
+            const vol = synthParams.bassVol;
+            const gain = audioCtx.createGain();
+            const level = (accent ? 0.4 : 0.3) * vol;
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(level, time + 0.005);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+
+            const eq = createEQ(synthParams.bassHi, synthParams.bassMid, synthParams.bassLo);
+
+            osc.connect(filter);
+            filter.connect(dist);
+            dist.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            osc.start(time);
+            osc.stop(time + duration + 0.1);
+        }
+
+        // NOISE - Harsh noise bass
+        function playNoiseBass(freq, time, duration, accent) {
+            const bufferSize = audioCtx.sampleRate * duration;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+
+            // Pitched noise
+            const period = audioCtx.sampleRate / freq;
+            for (let i = 0; i < bufferSize; i++) {
+                const phase = (i % period) / period;
+                data[i] = (Math.random() * 2 - 1) * (phase < 0.5 ? 1 : -1);
+            }
+
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = synthParams.bassFilter * 2;
+            filter.Q.value = synthParams.bassReso * 0.5;
+
+            const vol = synthParams.bassVol;
+            const gain = audioCtx.createGain();
+            const level = (accent ? 0.35 : 0.25) * vol;
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(level, time + 0.01);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+
+            const eq = createEQ(synthParams.bassHi, synthParams.bassMid, synthParams.bassLo);
+
+            noise.connect(filter);
+            filter.connect(gain);
+            gain.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            noise.start(time);
+        }
+
+        // SUB - Pure low end
+        function playSubBass(freq, time, duration, accent) {
+            const osc = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+
+            osc.type = 'sine';
+            osc.frequency.value = freq * 0.5;
+
+            osc2.type = 'triangle';
+            osc2.frequency.value = freq;
+
+            const vol = synthParams.bassVol;
+            const gain = audioCtx.createGain();
+            const level = (accent ? 0.6 : 0.5) * vol;
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(level, time + 0.02);
+            gain.gain.setValueAtTime(level * 0.8, time + duration * 0.7);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+
+            const gain2 = audioCtx.createGain();
+            gain2.gain.value = 0.2;
+
+            const filter = audioCtx.createBiquadFilter();
+            filter.type = 'lowpass';
+            filter.frequency.value = 150;
+
+            const eq = createEQ(synthParams.bassHi, synthParams.bassMid, synthParams.bassLo);
+
+            osc.connect(gain);
+            osc2.connect(gain2);
+            gain2.connect(gain);
+            gain.connect(filter);
+            filter.connect(eq.input);
+            eq.output.connect(masterGain);
+
+            osc.start(time);
+            osc2.start(time);
+            osc.stop(time + duration + 0.1);
+            osc2.stop(time + duration + 0.1);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // PAD - Dark atmospheric
+        // ═══════════════════════════════════════════════════════════════════
+
+        function playPad(chord, time, duration) {
+            const vol = synthParams.padVol;
+            if (vol < 0.05) return;
+
+            const freqs = chord.map(n => scale[n % scale.length]);
+            const eq = createEQ(synthParams.padHi, synthParams.padMid, synthParams.padLo);
+
+            freqs.forEach((freq) => {
+                const osc = audioCtx.createOscillator();
+                const osc2 = audioCtx.createOscillator();
+
+                osc.type = 'sawtooth';
+                osc2.type = 'triangle';
+                osc.frequency.value = freq * 2;
+                osc2.frequency.value = freq * 2.01;
+                osc.detune.value = (Math.random() - 0.5) * 15;
+
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 600;
+                filter.Q.value = 2;
+
+                const gain = audioCtx.createGain();
+                const level = vol * 0.1;
+                gain.gain.setValueAtTime(0, time);
+                gain.gain.linearRampToValueAtTime(level, time + 2);
+                gain.gain.setValueAtTime(level, time + duration - 2);
+                gain.gain.linearRampToValueAtTime(0, time + duration);
+
+                osc.connect(filter);
+                osc2.connect(filter);
+                filter.connect(gain);
+                gain.connect(eq.input);
+
+                osc.start(time);
+                osc2.start(time);
+                osc.stop(time + duration + 0.1);
+                osc2.stop(time + duration + 0.1);
+            });
+
+            eq.output.connect(masterGain);
+            eq.output.connect(reverbGain);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SEQUENCER
+        // ═══════════════════════════════════════════════════════════════════
+
+        function scheduleStep(step, time) {
+            const stepDuration = 60 / bpm / 4;
+
+            let swungTime = time;
+            if (step % 2 === 1) {
+                swungTime += stepDuration * synthParams.swing;
+            }
+
+            if (kickPattern[step]) playKick(swungTime);
+            if (clapPattern[step]) playClap(swungTime);
+            if (hatPattern[step]) playHat(swungTime, step === 13);
+
+            if (bassPattern[step]) {
+                const noteIdx = bassNotes[step];
+                const freq = scale[noteIdx];
+                const accent = accentPattern[step] === 1;
+                playBass(freq, swungTime, stepDuration * 2, accent);
+            }
+
+            if (step === 0) {
+                playPad([0, 2, 4], time, stepDuration * 16);
+            }
+        }
+
+        function scheduler() {
+            const stepDuration = 60 / bpm / 4;
+            while (nextStepTime < audioCtx.currentTime + 0.1) {
+                scheduleStep(currentStep, nextStepTime);
+                nextStepTime += stepDuration;
+                currentStep = (currentStep + 1) % 16;
+            }
+        }
+
+        function startPlayback() {
+            if (!audioCtx) initAudio();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+
+            isPlaying = true;
+            currentStep = 0;
+            nextStepTime = audioCtx.currentTime + 0.05;
+
+            schedulerInterval = setInterval(scheduler, 25);
+
+            playBtn.classList.add('playing');
+            playBtn.querySelector('.play-icon').innerHTML = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+        }
+
+        function stopPlayback() {
+            isPlaying = false;
+            if (schedulerInterval) {
+                clearInterval(schedulerInterval);
+                schedulerInterval = null;
+            }
+
+            playBtn.classList.remove('playing');
+            playBtn.querySelector('.play-icon').innerHTML = '<path d="M8 5v14l11-7z"/>';
+        }
+
+        function triggerAnimation(type) {
+            if (!cigaretteSvg) return;
+            cigaretteSvg.classList.add(type);
+            setTimeout(() => cigaretteSvg.classList.remove(type), 150);
+        }
+
+        // Events
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) stopPlayback();
+            else startPlayback();
+        });
+
+        bpmSlider.addEventListener('input', (e) => {
+            bpm = parseInt(e.target.value);
+            bpmValue.textContent = bpm;
+            synthParams.delayTime = (60 / bpm) * 0.75;
+            if (delayNode) delayNode.delayTime.value = synthParams.delayTime;
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            if (masterOutput) masterOutput.gain.value = e.target.value / 100;
+        });
+
+        document.querySelectorAll('.bass-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.bass-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentBassType = btn.dataset.bass;
+            });
+        });
+
+        // ═══════════════════════════════════════════════════════════════════
+        // KNOB SYSTEM
+        // ═══════════════════════════════════════════════════════════════════
+
+        let activeKnob = null;
+        let knobStartY = 0;
+        let knobStartValue = 0;
+
+        function initKnobs() {
+            document.querySelectorAll('.knob').forEach(knob => {
+                const param = knob.dataset.param;
+                const value = parseInt(knob.dataset.value);
+                params[param] = value;
+                updateKnobVisual(knob, value, false);
+                knob.addEventListener('mousedown', startKnobDrag);
+                knob.addEventListener('touchstart', startKnobDrag, { passive: false });
+                knob.addEventListener('dblclick', resetKnob);
+            });
+
+            document.querySelectorAll('.mini-knob').forEach(knob => {
+                const param = knob.dataset.param;
+                const value = parseInt(knob.dataset.value);
+                params[param] = value;
+                synthParams[param] = value / 100;
+                updateKnobVisual(knob, value, true);
+                knob.addEventListener('mousedown', startKnobDrag);
+                knob.addEventListener('touchstart', startKnobDrag, { passive: false });
+                knob.addEventListener('dblclick', resetKnob);
+            });
+
+            document.addEventListener('mousemove', dragKnob);
+            document.addEventListener('mouseup', stopKnobDrag);
+            document.addEventListener('touchmove', dragKnob, { passive: false });
+            document.addEventListener('touchend', stopKnobDrag);
+        }
+
+        function startKnobDrag(e) {
+            e.preventDefault();
+            activeKnob = e.currentTarget;
+            activeKnob.classList.add('dragging');
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            knobStartY = clientY;
+            knobStartValue = parseInt(activeKnob.dataset.value);
+        }
+
+        function dragKnob(e) {
+            if (!activeKnob) return;
+            e.preventDefault();
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+            const deltaY = knobStartY - clientY;
+            const sensitivity = activeKnob.classList.contains('mini-knob') ? 1.5 : 2;
+
+            let newValue = knobStartValue + Math.round(deltaY / sensitivity);
+            newValue = Math.max(0, Math.min(100, newValue));
+
+            activeKnob.dataset.value = newValue;
+            updateKnobVisual(activeKnob, newValue, activeKnob.classList.contains('mini-knob'));
+
+            const param = activeKnob.dataset.param;
+            params[param] = newValue;
+            applyParameter(param, newValue);
+        }
+
+        function stopKnobDrag() {
+            if (activeKnob) {
+                activeKnob.classList.remove('dragging');
+                activeKnob = null;
+            }
+        }
+
+        function resetKnob(e) {
+            const knob = e.currentTarget;
+            const defaultValue = 50;
+            knob.dataset.value = defaultValue;
+            updateKnobVisual(knob, defaultValue, knob.classList.contains('mini-knob'));
+            const param = knob.dataset.param;
+            params[param] = defaultValue;
+            applyParameter(param, defaultValue);
+        }
+
+        function updateKnobVisual(knob, value, isMini) {
+            const indicator = knob.querySelector(isMini ? '.mini-indicator' : '.knob-indicator');
+            if (!indicator) return;
+            const rotation = -135 + (value / 100) * 270;
+            indicator.style.transform = `translateX(-50%) rotate(${rotation}deg)`;
+
+            if (!isMini) {
+                const container = knob.closest('.knob-container');
+                if (container) {
+                    const valueDisplay = container.querySelector('.knob-value');
+                    if (valueDisplay) valueDisplay.textContent = value;
+                }
+            }
+        }
+
+        function applyParameter(param, value) {
+            const n = value / 100;
+
+            if (param.match(/^(kick|clap|hat|bass|pad|voice)(Hi|Mid|Lo|Vol)$/)) {
+                synthParams[param] = n;
+                return;
+            }
+
+            switch(param) {
+                case 'swing':
+                    synthParams.swing = n * 0.3;
+                    break;
+                case 'bassFilter':
+                    synthParams.bassFilter = 80 + n * 1800;
+                    break;
+                case 'bassReso':
+                    synthParams.bassReso = 1 + n * 30;
+                    break;
+                case 'bassEnvMod':
+                    synthParams.bassEnvMod = n * 5000;
+                    break;
+                case 'bassDecay':
+                    synthParams.bassDecay = 0.1 + n * 0.8;
+                    break;
+                case 'reverbMix':
+                    synthParams.reverbMix = n * 0.7;
+                    if (reverbGain) reverbGain.gain.value = synthParams.reverbMix;
+                    break;
+                case 'delayMix':
+                    synthParams.delayMix = n * 0.6;
+                    break;
+                case 'distortion':
+                    synthParams.distAmount = 5 + n * 60;
+                    if (distortionNode) distortionNode.curve = makeDistortionCurve(synthParams.distAmount);
+                    break;
+                case 'darkness':
+                    synthParams.darkness = 8000 - n * 7000;
+                    if (darkFilter) darkFilter.frequency.value = synthParams.darkness;
+                    break;
+            }
+        }
+
+        initKnobs();
+
+        // ═══════════════════════════════════════════════════════════════════
+        // VOICE SYSTEM
+        // ═══════════════════════════════════════════════════════════════════
+
+        let voiceBuffer = null;
+        let voiceSource = null;
+        let isVoicePlaying = false;
+        let voiceStartTime = 0;
+        let voiceDuration = 0;
+
+        const voiceBtn = document.getElementById('voiceBtn');
+        const voiceLoadBtn = document.getElementById('voiceLoadBtn');
+        const voiceFileInput = document.getElementById('voiceFileInput');
+        const voiceProgressBar = document.getElementById('voiceProgressBar');
+        const voiceStatusEl = document.getElementById('voiceStatus');
+
+        voiceLoadBtn.addEventListener('click', () => voiceFileInput.click());
+
+        voiceFileInput.addEventListener('change', async (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            voiceStatusEl.textContent = 'Loading...';
+
+            try {
+                if (!audioCtx) initAudio();
+
+                const arrayBuffer = await file.arrayBuffer();
+                voiceBuffer = await audioCtx.decodeAudioData(arrayBuffer);
+                voiceDuration = voiceBuffer.duration;
+
+                voiceStatusEl.textContent = `${file.name.slice(0, 10)}... (${Math.floor(voiceDuration)}s)`;
+                voiceBtn.disabled = false;
+                voiceProgressBar.style.width = '0%';
+            } catch (err) {
+                console.error('Error loading audio:', err);
+                voiceStatusEl.textContent = 'Error';
+            }
+        });
+
+        voiceBtn.addEventListener('click', () => {
+            if (!voiceBuffer) return;
+            if (isVoicePlaying) stopVoice();
+            else playVoice();
+        });
+
+        function playVoice() {
+            if (!voiceBuffer || !audioCtx) return;
+
+            const eq = createEQ(synthParams.voiceHi, synthParams.voiceMid, synthParams.voiceLo);
+            const voiceGain = audioCtx.createGain();
+            voiceGain.gain.value = synthParams.voiceVol;
+
+            voiceSource = audioCtx.createBufferSource();
+            voiceSource.buffer = voiceBuffer;
+            voiceSource.connect(eq.input);
+            eq.output.connect(voiceGain);
+            voiceGain.connect(masterOutput);
+
+            voiceSource.onended = () => {
+                if (isVoicePlaying) {
+                    stopVoice();
+                    voiceProgressBar.style.width = '100%';
+                    setTimeout(() => voiceProgressBar.style.width = '0%', 1000);
+                }
+            };
+
+            if (masterGain) masterGain.gain.linearRampToValueAtTime(0.25, audioCtx.currentTime + 0.3);
+
+            voiceSource.start();
+            voiceStartTime = audioCtx.currentTime;
+            isVoicePlaying = true;
+
+            voiceBtn.classList.add('active');
+            voiceBtn.querySelector('span').textContent = 'STOP';
+            voiceStatusEl.textContent = 'Playing...';
+
+            updateVoiceProgress();
+        }
+
+        function stopVoice() {
+            if (voiceSource) {
+                try { voiceSource.stop(); } catch (e) {}
+                voiceSource = null;
+            }
+
+            isVoicePlaying = false;
+            if (masterGain) masterGain.gain.linearRampToValueAtTime(0.55, audioCtx.currentTime + 0.5);
+
+            voiceBtn.classList.remove('active');
+            voiceBtn.querySelector('span').textContent = 'PLAY';
+            voiceStatusEl.textContent = 'Stopped';
+        }
+
+        function updateVoiceProgress() {
+            if (!isVoicePlaying) return;
+            const elapsed = audioCtx.currentTime - voiceStartTime;
+            const progress = Math.min((elapsed / voiceDuration) * 100, 100);
+            voiceProgressBar.style.width = progress + '%';
+            if (progress < 100) requestAnimationFrame(updateVoiceProgress);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // RECORDING
+        // ═══════════════════════════════════════════════════════════════════
+
+        let isRecording = false;
+        let recordedChunks = [];
+        let recordingStartTime = 0;
+        let recordingDestination = null;
+        let recordingTimerInterval = null;
+
+        const recordBtn = document.getElementById('recordBtn');
+        const recordStatus = document.getElementById('recordStatus');
+        const recordTime = document.getElementById('recordTime');
+        const downloadBtn = document.getElementById('downloadBtn');
+
+        function createWavBlob(chunks, sampleRate) {
+            const numChannels = 2;
+            const samples = chunks.reduce((acc, chunk) => acc + chunk.left.length, 0);
+            const dataSize = samples * numChannels * 4;
+            const bufferSize = 44 + dataSize;
+
+            const arrayBuffer = new ArrayBuffer(bufferSize);
+            const view = new DataView(arrayBuffer);
+
+            const writeString = (offset, string) => {
+                for (let i = 0; i < string.length; i++) {
+                    view.setUint8(offset + i, string.charCodeAt(i));
+                }
+            };
+
+            writeString(0, 'RIFF');
+            view.setUint32(4, bufferSize - 8, true);
+            writeString(8, 'WAVE');
+            writeString(12, 'fmt ');
+            view.setUint32(16, 16, true);
+            view.setUint16(20, 3, true);
+            view.setUint16(22, numChannels, true);
+            view.setUint32(24, sampleRate, true);
+            view.setUint32(28, sampleRate * numChannels * 4, true);
+            view.setUint16(32, numChannels * 4, true);
+            view.setUint16(34, 32, true);
+            writeString(36, 'data');
+            view.setUint32(40, dataSize, true);
+
+            let offset = 44;
+            chunks.forEach(chunk => {
+                for (let i = 0; i < chunk.left.length; i++) {
+                    view.setFloat32(offset, chunk.left[i], true);
+                    view.setFloat32(offset + 4, chunk.right[i], true);
+                    offset += 8;
+                }
+            });
+
+            return new Blob([arrayBuffer], { type: 'audio/wav' });
+        }
+
+        function startRecording() {
+            if (!audioCtx || isRecording) return;
+
+            isRecording = true;
+            recordedChunks = [];
+            recordingStartTime = Date.now();
+
+            const bufferSize = 4096;
+            const recorder = audioCtx.createScriptProcessor(bufferSize, 2, 2);
+
+            recorder.onaudioprocess = (e) => {
+                if (!isRecording) return;
+                const left = new Float32Array(e.inputBuffer.getChannelData(0));
+                const right = new Float32Array(e.inputBuffer.getChannelData(1));
+                recordedChunks.push({ left, right });
+            };
+
+            masterOutput.connect(recorder);
+            recorder.connect(audioCtx.destination);
+            recordingDestination = recorder;
+
+            recordBtn.classList.add('recording');
+            recordStatus.textContent = 'Recording';
+            recordStatus.classList.add('recording');
+            downloadBtn.disabled = true;
+
+            recordingTimerInterval = setInterval(updateRecordingTime, 100);
+        }
+
+        function stopRecording() {
+            if (!isRecording) return;
+
+            isRecording = false;
+
+            if (recordingDestination) {
+                recordingDestination.disconnect();
+                recordingDestination = null;
+            }
+
+            clearInterval(recordingTimerInterval);
+
+            recordBtn.classList.remove('recording');
+            recordStatus.textContent = 'Processing...';
+            recordStatus.classList.remove('recording');
+
+            setTimeout(() => {
+                const wavBlob = createWavBlob(recordedChunks, audioCtx.sampleRate);
+
+                downloadBtn.onclick = () => {
+                    const url = URL.createObjectURL(wavBlob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    const duration = Math.floor((Date.now() - recordingStartTime) / 1000);
+                    a.download = `asbestos-filters-${audioCtx.sampleRate}hz-32bit-${duration}s.wav`;
+                    a.click();
+                };
+
+                const fileSizeMB = (wavBlob.size / (1024 * 1024)).toFixed(1);
+                recordStatus.textContent = `Ready (${fileSizeMB} MB)`;
+                downloadBtn.disabled = false;
+            }, 100);
+        }
+
+        function updateRecordingTime() {
+            if (!recordingStartTime) return;
+            const elapsed = Math.floor((Date.now() - recordingStartTime) / 1000);
+            const minutes = Math.floor(elapsed / 60).toString().padStart(2, '0');
+            const seconds = (elapsed % 60).toString().padStart(2, '0');
+            recordTime.textContent = `${minutes}:${seconds}`;
+        }
+
+        recordBtn.addEventListener('click', () => {
+            if (!audioCtx) {
+                alert('Start playback first');
+                return;
+            }
+            if (isRecording) stopRecording();
+            else startRecording();
+        });
+    </script>
+    </div>
+</body>
+</html>

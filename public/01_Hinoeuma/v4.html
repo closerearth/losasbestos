@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Year of the Fire Horse | 2026-2027</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --parchment: #f4ede4;
+            --parchment-dark: #e8dfd3;
+            --ink: #1a1a1a;
+            --fire-orange: #e85a1b;
+            --fire-gold: #f4a636;
+            --fire-red: #c23a22;
+            --ember: #ff6b35;
+            --deep-night: #0d1117;
+            --mystic-blue: #4a9ead;
+            --thorn: #2d3436;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--parchment);
+            font-family: 'Spectral', Georgia, serif;
+            color: var(--ink);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Texture */
+        .texture-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 0.04;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+        }
+
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        /* Thorny Border Frame */
+        .border-frame {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+
+        .thorn-border {
+            position: absolute;
+            background: linear-gradient(135deg, var(--thorn) 0%, #1a1a1a 50%, var(--mystic-blue) 100%);
+            opacity: 0.9;
+        }
+
+        .thorn-top, .thorn-bottom {
+            height: 25px;
+            left: 0;
+            right: 0;
+        }
+
+        .thorn-top {
+            top: 0;
+            clip-path: polygon(0 0, 100% 0, 100% 60%, 98% 100%, 95% 50%, 92% 100%, 88% 40%, 85% 100%, 80% 50%, 75% 100%, 70% 40%, 65% 100%, 60% 50%, 55% 100%, 50% 40%, 45% 100%, 40% 50%, 35% 100%, 30% 40%, 25% 100%, 20% 50%, 15% 100%, 10% 40%, 5% 100%, 2% 50%, 0 100%);
+            animation: thornPulse 4s ease-in-out infinite;
+        }
+
+        .thorn-bottom {
+            bottom: 0;
+            clip-path: polygon(0 100%, 100% 100%, 100% 40%, 98% 0%, 95% 50%, 92% 0%, 88% 60%, 85% 0%, 80% 50%, 75% 0%, 70% 60%, 65% 0%, 60% 50%, 55% 0%, 50% 60%, 45% 0%, 40% 50%, 35% 0%, 30% 60%, 25% 0%, 20% 50%, 15% 0%, 10% 60%, 5% 0%, 2% 50%, 0 0%);
+            animation: thornPulse 4s ease-in-out infinite 0.5s;
+        }
+
+        .thorn-left, .thorn-right {
+            width: 25px;
+            top: 0;
+            bottom: 0;
+        }
+
+        .thorn-left {
+            left: 0;
+            clip-path: polygon(0 0, 60% 0, 100% 2%, 50% 5%, 100% 10%, 40% 15%, 100% 20%, 50% 25%, 100% 30%, 40% 35%, 100% 40%, 50% 45%, 100% 50%, 40% 55%, 100% 60%, 50% 65%, 100% 70%, 40% 75%, 100% 80%, 50% 85%, 100% 90%, 40% 95%, 100% 98%, 60% 100%, 0 100%);
+            animation: thornPulse 4s ease-in-out infinite 0.25s;
+        }
+
+        .thorn-right {
+            right: 0;
+            clip-path: polygon(100% 0, 40% 0, 0% 2%, 50% 5%, 0% 10%, 60% 15%, 0% 20%, 50% 25%, 0% 30%, 60% 35%, 0% 40%, 50% 45%, 0% 50%, 60% 55%, 0% 60%, 50% 65%, 0% 70%, 60% 75%, 0% 80%, 50% 85%, 0% 90%, 60% 95%, 0% 98%, 40% 100%, 100% 100%);
+            animation: thornPulse 4s ease-in-out infinite 0.75s;
+        }
+
+        @keyframes thornPulse {
+            0%, 100% { opacity: 0.85; }
+            50% { opacity: 1; }
+        }
+
+        /* Corner Decorations */
+        .corner {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            opacity: 0.7;
+        }
+
+        .corner svg {
+            width: 100%;
+            height: 100%;
+            fill: var(--mystic-blue);
+            filter: drop-shadow(0 0 10px rgba(74, 158, 173, 0.5));
+        }
+
+        .corner-tl { top: 15px; left: 15px; }
+        .corner-tr { top: 15px; right: 15px; transform: rotate(90deg); }
+        .corner-bl { bottom: 15px; left: 15px; transform: rotate(-90deg); }
+        .corner-br { bottom: 15px; right: 15px; transform: rotate(180deg); }
+
+        /* Main Card */
+        .main-card {
+            background: var(--parchment);
+            border: 3px solid var(--thorn);
+            box-shadow: 
+                0 0 0 1px var(--parchment-dark),
+                0 0 0 4px var(--mystic-blue),
+                0 0 60px rgba(74, 158, 173, 0.2),
+                inset 0 0 100px rgba(0,0,0,0.03);
+            max-width: 500px;
+            width: 100%;
+            padding: 2.5rem 2rem;
+            position: relative;
+            animation: cardFloat 6s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--ink);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { text-shadow: 2px 2px 4px rgba(0,0,0,0.1); }
+            50% { text-shadow: 2px 2px 20px rgba(232, 90, 27, 0.3), 2px 2px 4px rgba(0,0,0,0.1); }
+        }
+
+        /* Scroll Dates */
+        .scroll-dates {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .scroll-handle {
+            width: 20px;
+            height: 80px;
+            background: linear-gradient(180deg, #5a6066 0%, #3d4145 50%, #5a6066 100%);
+            border-radius: 4px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .scroll-handle::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 16px;
+            background: linear-gradient(180deg, #6a7076 0%, #4d5155 100%);
+            border-radius: 4px 4px 0 0;
+        }
+
+        .scroll-handle::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 28px;
+            height: 16px;
+            background: linear-gradient(180deg, #4d5155 0%, #6a7076 100%);
+            border-radius: 0 0 4px 4px;
+        }
+
+        .scroll-paper {
+            background: linear-gradient(180deg, #d4cdc4 0%, #e8e0d6 20%, #e8e0d6 80%, #d4cdc4 100%);
+            padding: 0.8rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 120px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .scroll-paper .label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .scroll-paper .date {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--ink);
+            margin-top: 0.2rem;
+        }
+
+        /* Horse Illustration Container */
+        .horse-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(180deg, var(--deep-night) 0%, #1a2030 100%);
+            border: 2px solid var(--thorn);
+            margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        /* Animated Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Fire Horse SVG */
+        .horse-svg {
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: horseGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes horseGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(232, 90, 27, 0.6)); }
+            50% { filter: drop-shadow(0 0 40px rgba(244, 166, 54, 0.8)); }
+        }
+
+        /* Fire Particles */
+        .fire-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            border-radius: 50%;
+            animation: fireRise 2s ease-out infinite;
+        }
+
+        @keyframes fireRise {
+            0% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-150px) scale(0);
+            }
+        }
+
+        /* Badge */
+        .badge {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .badge-inner {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, var(--fire-red) 0%, #8b1a1a 100%);
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--fire-gold);
+            box-shadow: 
+                0 0 20px rgba(232, 90, 27, 0.5),
+                inset 0 0 20px rgba(0,0,0,0.3);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(232, 90, 27, 0.5), inset 0 0 20px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 0 40px rgba(244, 166, 54, 0.7), inset 0 0 20px rgba(0,0,0,0.3); }
+        }
+
+        .badge-text {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--fire-gold);
+            text-align: center;
+            line-height: 1.1;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .badge-sub {
+            font-family: 'Cinzel', serif;
+            font-size: 0.5rem;
+            color: rgba(244, 166, 54, 0.8);
+            letter-spacing: 0.05em;
+            margin-top: 0.3rem;
+        }
+
+        /* Wave Decorations */
+        .wave-decoration {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .wave-circle {
+            width: 50px;
+            height: 50px;
+            border: 2px solid var(--mystic-blue);
+            border-radius: 50%;
+            position: relative;
+            opacity: 0.6;
+        }
+
+        .wave-circle::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--mystic-blue);
+            border-radius: 50%;
+        }
+
+        /* Tagline */
+        .tagline {
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.2em;
+            color: var(--ink);
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        /* Generative Audio Player */
+        .audio-player {
+            background: linear-gradient(180deg, var(--deep-night) 0%, #0a0d12 100%);
+            border: 2px solid var(--mystic-blue);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .audio-player::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(74, 158, 173, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .player-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .play-btn {
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--fire-orange) 0%, var(--fire-red) 100%);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 25px rgba(232, 90, 27, 0.5);
+            flex-shrink: 0;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(232, 90, 27, 0.7);
+        }
+
+        .play-btn.playing {
+            background: linear-gradient(135deg, var(--mystic-blue) 0%, #2d6a7a 100%);
+            box-shadow: 0 0 25px rgba(74, 158, 173, 0.6);
+        }
+
+        .play-btn svg {
+            width: 22px;
+            height: 22px;
+            fill: white;
+        }
+
+        .play-icon { margin-left: 3px; }
+        .pause-icon { display: none; }
+        .play-btn.playing .play-icon { display: none; }
+        .play-btn.playing .pause-icon { display: block; }
+
+        .track-info {
+            flex: 1;
+        }
+
+        .track-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            color: var(--parchment);
+            margin-bottom: 0.25rem;
+            letter-spacing: 0.05em;
+        }
+
+        .track-artist {
+            font-family: 'Spectral', serif;
+            font-size: 0.85rem;
+            color: var(--mystic-blue);
+            font-style: italic;
+        }
+
+        /* Visualizer */
+        .visualizer-container {
+            position: relative;
+            height: 80px;
+            margin-bottom: 1rem;
+            border-radius: 6px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.3);
+        }
+
+        .visualizer {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 2px;
+            padding: 8px;
+        }
+
+        .viz-bar {
+            flex: 1;
+            max-width: 8px;
+            background: linear-gradient(180deg, var(--fire-gold) 0%, var(--fire-orange) 50%, var(--fire-red) 100%);
+            border-radius: 2px 2px 0 0;
+            min-height: 3px;
+            transition: height 0.05s ease;
+        }
+
+        /* Controls */
+        .controls-row {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-icon {
+            width: 18px;
+            height: 18px;
+            fill: var(--mystic-blue);
+            flex-shrink: 0;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            height: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 2px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            background: var(--fire-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(244, 166, 54, 0.5);
+        }
+
+        .volume-slider { width: 80px; }
+
+        .tempo-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-left: auto;
+        }
+
+        .tempo-label {
+            font-family: 'Spectral', serif;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .tempo-slider { width: 70px; }
+
+        .tempo-value {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--fire-gold);
+            min-width: 45px;
+        }
+
+        /* Status indicator */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            margin-left: auto;
+        }
+
+        .status-dot.active {
+            background: var(--fire-gold);
+            box-shadow: 0 0 10px var(--fire-gold);
+            animation: pulse 1s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Footer Attribution */
+        .attribution {
+            text-align: center;
+            margin-top: 2rem;
+            font-family: 'Spectral', serif;
+            font-size: 0.75rem;
+            color: rgba(26, 26, 26, 0.5);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .main-card {
+                padding: 1.5rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 1.3rem;
+            }
+
+            .scroll-paper {
+                min-width: 90px;
+                padding: 0.6rem 1rem;
+            }
+
+            .scroll-paper .date {
+                font-size: 0.8rem;
+            }
+
+            .badge-inner {
+                width: 80px;
+                height: 80px;
+            }
+
+            .badge-text {
+                font-size: 0.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="texture-overlay"></div>
+
+    <!-- Thorny Border Frame -->
+    <div class="border-frame">
+        <div class="thorn-border thorn-top"></div>
+        <div class="thorn-border thorn-bottom"></div>
+        <div class="thorn-border thorn-left"></div>
+        <div class="thorn-border thorn-right"></div>
+
+        <!-- Corner Decorations -->
+        <div class="corner corner-tl">
+            <svg viewBox="0 0 100 100">
+                <path d="M10,50 Q10,10 50,10 L50,20 Q20,20 20,50 Z"/>
+                <circle cx="35" cy="35" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="corner corner-tr">
+            <svg viewBox="0 0 100 100">
+                <path d="M10,50 Q10,10 50,10 L50,20 Q20,20 20,50 Z"/>
+                <circle cx="35" cy="35" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="corner corner-bl">
+            <svg viewBox="0 0 100 100">
+                <path d="M10,50 Q10,10 50,10 L50,20 Q20,20 20,50 Z"/>
+                <circle cx="35" cy="35" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
+        <div class="corner corner-br">
+            <svg viewBox="0 0 100 100">
+                <path d="M10,50 Q10,10 50,10 L50,20 Q20,20 20,50 Z"/>
+                <circle cx="35" cy="35" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-card">
+            <!-- Header -->
+            <div class="header">
+                <h1>The upcoming Year of the Horse</h1>
+            </div>
+
+            <!-- Scroll Dates -->
+            <div class="scroll-dates">
+                <div class="scroll-handle"></div>
+                <div class="scroll-paper">
+                    <span class="label">Begins:</span>
+                    <span class="date">February 17, 2026</span>
+                </div>
+                <div class="scroll-paper">
+                    <span class="label">Ends:</span>
+                    <span class="date">February 5, 2027</span>
+                </div>
+                <div class="scroll-handle"></div>
+            </div>
+
+            <!-- Horse Illustration -->
+            <div class="horse-container">
+                <div class="stars" id="stars"></div>
+                <div class="fire-particles" id="fireParticles"></div>
+                
+                <!-- Stylized Fire Horse SVG -->
+                <svg class="horse-svg" viewBox="0 0 200 200">
+                    <defs>
+                        <linearGradient id="fireGradient" x1="0%" y1="100%" x2="100%" y2="0%">
+                            <stop offset="0%" style="stop-color:#c23a22"/>
+                            <stop offset="50%" style="stop-color:#e85a1b"/>
+                            <stop offset="100%" style="stop-color:#f4a636"/>
+                        </linearGradient>
+                        <linearGradient id="flameGradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" style="stop-color:#e85a1b"/>
+                            <stop offset="100%" style="stop-color:#f4a636"/>
+                        </linearGradient>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+                    
+                    <!-- Horse Body -->
+                    <g filter="url(#glow)">
+                        <!-- Rearing Horse Shape -->
+                        <path fill="url(#fireGradient)" d="
+                            M100,180 
+                            Q85,170 80,150 
+                            L75,130 
+                            Q70,115 75,100
+                            L80,85
+                            Q85,70 95,60
+                            L100,50
+                            Q110,40 115,45
+                            L125,55
+                            Q135,50 140,55
+                            L145,65
+                            Q150,75 145,85
+                            L140,95
+                            Q145,105 145,115
+                            L150,130
+                            Q155,145 150,160
+                            L145,175
+                            Q140,185 130,185
+                            L120,180
+                            Q110,185 100,180
+                            Z
+                        "/>
+                        
+                        <!-- Front Legs -->
+                        <path fill="url(#fireGradient)" d="
+                            M85,115 L75,145 Q70,155 75,160 L80,155 L90,125 Z
+                        "/>
+                        <path fill="url(#fireGradient)" d="
+                            M95,120 L90,150 Q88,158 92,162 L97,157 L102,127 Z
+                        "/>
+                        
+                        <!-- Back Legs -->
+                        <path fill="url(#fireGradient)" d="
+                            M125,150 L130,175 Q132,182 128,185 L122,180 L118,155 Z
+                        "/>
+                        <path fill="url(#fireGradient)" d="
+                            M140,145 L148,170 Q152,178 147,182 L140,175 L135,150 Z
+                        "/>
+                        
+                        <!-- Head -->
+                        <path fill="url(#fireGradient)" d="
+                            M95,60 
+                            Q85,55 80,45
+                            L75,35
+                            Q75,25 85,25
+                            L95,28
+                            Q100,30 105,28
+                            L110,25
+                            Q115,22 118,28
+                            L115,40
+                            Q118,50 115,55
+                            L105,58
+                            Q100,60 95,60
+                            Z
+                        "/>
+                        
+                        <!-- Ear -->
+                        <path fill="url(#flameGradient)" d="
+                            M90,28 L85,15 Q88,12 93,18 L95,28 Z
+                        "/>
+                        
+                        <!-- Eye -->
+                        <circle cx="92" cy="38" r="3" fill="#1a1a1a"/>
+                        
+                        <!-- Mane Flames -->
+                        <path fill="url(#flameGradient)" d="
+                            M105,30 Q120,20 115,5 Q125,15 120,30 Q130,15 125,0 Q140,20 130,40 L115,45 Z
+                        " class="flame-mane"/>
+                        
+                        <path fill="url(#flameGradient)" d="
+                            M115,50 Q135,45 130,25 Q145,40 135,55 L120,58 Z
+                        " class="flame-mane"/>
+                        
+                        <path fill="url(#flameGradient)" d="
+                            M120,65 Q145,55 140,35 Q155,55 140,75 L125,72 Z
+                        " class="flame-mane"/>
+                        
+                        <!-- Tail Flames -->
+                        <path fill="url(#flameGradient)" d="
+                            M150,160 Q175,150 170,125 Q185,145 170,170 Q160,180 150,175 Z
+                        " class="flame-tail"/>
+                        
+                        <path fill="url(#flameGradient)" d="
+                            M155,145 Q180,130 175,105 Q195,130 175,160 L155,155 Z
+                        " class="flame-tail"/>
+                    </g>
+                </svg>
+
+                <!-- Badge -->
+                <div class="badge">
+                    <div class="badge-inner">
+                        <span class="badge-text">FIRE<br>HORSE<br>YEAR</span>
+                        <span class="badge-sub">ONCE EVERY 60 YEARS</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wave Decorations -->
+            <div class="wave-decoration">
+                <div class="wave-circle"></div>
+                <div class="wave-circle"></div>
+            </div>
+
+            <!-- Tagline -->
+            <div class="tagline">A Rare Combination</div>
+
+            <!-- Generative Audio Player -->
+            <div class="audio-player">
+                <div class="player-header">
+                    <button class="play-btn" id="playBtn">
+                        <svg class="play-icon" viewBox="0 0 24 24">
+                            <polygon points="5,3 19,12 5,21"/>
+                        </svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24">
+                            <rect x="6" y="4" width="4" height="16"/>
+                            <rect x="14" y="4" width="4" height="16"/>
+                        </svg>
+                    </button>
+                    <div class="track-info">
+                        <div class="track-title">Hinoeuma (generative)</div>
+                        <div class="track-artist">Web Audio Synthesis</div>
+                    </div>
+                    <div class="status-dot" id="statusDot"></div>
+                </div>
+                
+                <div class="visualizer-container">
+                    <div class="visualizer" id="visualizer"></div>
+                </div>
+
+                <div class="controls-row">
+                    <div class="volume-control">
+                        <svg class="volume-icon" viewBox="0 0 24 24">
+                            <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/>
+                        </svg>
+                        <input type="range" class="slider volume-slider" id="volumeSlider" min="0" max="100" value="60">
+                    </div>
+                    <div class="tempo-control">
+                        <span class="tempo-label">BPM</span>
+                        <input type="range" class="slider tempo-slider" id="tempoSlider" min="80" max="140" value="118">
+                        <span class="tempo-value" id="tempoValue">118</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="attribution">
+            A rare combination — once every 60 years
+        </div>
+    </div>
+
+    <script>
+        // ═══════════════════════════════════════════════════════════════════
+        // GENERATIVE MELODIC TECHNO / AMBIENT SYNTHESIZER
+        // Broad frequency range: sub-bass to high shimmer
+        // ═══════════════════════════════════════════════════════════════════
+
+        // Generate Stars
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 50; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 2 + 's';
+            star.style.animationDuration = (1.5 + Math.random()) + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Generate Fire Particles
+        const fireContainer = document.getElementById('fireParticles');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = (30 + Math.random() * 40) + '%';
+            particle.style.bottom = (20 + Math.random() * 30) + '%';
+            particle.style.animationDuration = (1.5 + Math.random()) + 's';
+            particle.style.background = `hsl(${20 + Math.random() * 30}, 100%, ${50 + Math.random() * 20}%)`;
+            fireContainer.appendChild(particle);
+            setTimeout(() => particle.remove(), 2000);
+        }
+        setInterval(createParticle, 150);
+
+        // Flame animation
+        const flameElements = document.querySelectorAll('.flame-mane, .flame-tail');
+        flameElements.forEach((el, i) => {
+            el.style.animation = `flameFlicker ${1 + Math.random() * 0.5}s ease-in-out infinite`;
+            el.style.animationDelay = `${i * 0.1}s`;
+        });
+        const flameStyle = document.createElement('style');
+        flameStyle.textContent = `
+            @keyframes flameFlicker {
+                0%, 100% { transform: scale(1) translateX(0); opacity: 0.9; }
+                25% { transform: scale(1.05) translateX(2px); opacity: 1; }
+                50% { transform: scale(0.98) translateX(-1px); opacity: 0.85; }
+                75% { transform: scale(1.02) translateX(1px); opacity: 0.95; }
+            }
+        `;
+        document.head.appendChild(flameStyle);
+
+        // ═══════════════════════════════════════════════════════════════════
+        // WEB AUDIO GENERATIVE ENGINE
+        // ═══════════════════════════════════════════════════════════════════
+
+        let audioCtx = null;
+        let masterGain = null;
+        let compressor = null;
+        let analyser = null;
+        let isPlaying = false;
+        let bpm = 118;
+        let schedulerInterval = null;
+        let nextNoteTime = 0;
+        let currentStep = 0;
+
+        // Musical scales (D minor - dark, melancholic)
+        const ROOT = 146.83; // D3
+        const SCALE = [0, 2, 3, 5, 7, 8, 10]; // Natural minor
+        const CHORD_PROG = [
+            [0, 3, 7],      // Dm
+            [5, 8, 12],     // Bb
+            [3, 7, 10],     // F
+            [7, 10, 14],    // Am
+        ];
+
+        // Convert scale degree to frequency
+        function noteToFreq(degree, octaveShift = 0) {
+            const octave = Math.floor(degree / 7);
+            const note = SCALE[((degree % 7) + 7) % 7];
+            const semitones = octave * 12 + note;
+            return ROOT * Math.pow(2, (semitones / 12) + octaveShift);
+        }
+
+        // Initialize Audio Context
+        function initAudio() {
+            if (audioCtx) return;
+            
+            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Master chain: Gain -> Compressor -> Analyser -> Output
+            masterGain = audioCtx.createGain();
+            masterGain.gain.value = 0.6;
+            
+            compressor = audioCtx.createDynamicsCompressor();
+            compressor.threshold.value = -20;
+            compressor.knee.value = 10;
+            compressor.ratio.value = 4;
+            compressor.attack.value = 0.005;
+            compressor.release.value = 0.1;
+            
+            analyser = audioCtx.createAnalyser();
+            analyser.fftSize = 64;
+            
+            masterGain.connect(compressor);
+            compressor.connect(analyser);
+            analyser.connect(audioCtx.destination);
+            
+            // Create reverb
+            createReverb();
+        }
+
+        let reverbGain = null;
+        let convolver = null;
+
+        function createReverb() {
+            // Simple algorithmic reverb using delays
+            reverbGain = audioCtx.createGain();
+            reverbGain.gain.value = 0.3;
+            
+            const delays = [0.03, 0.05, 0.08, 0.13, 0.21];
+            delays.forEach(time => {
+                const delay = audioCtx.createDelay();
+                delay.delayTime.value = time;
+                const feedback = audioCtx.createGain();
+                feedback.gain.value = 0.2;
+                const filter = audioCtx.createBiquadFilter();
+                filter.type = 'lowpass';
+                filter.frequency.value = 2000;
+                
+                reverbGain.connect(delay);
+                delay.connect(filter);
+                filter.connect(feedback);
+                feedback.connect(delay);
+                filter.connect(masterGain);
+            });
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SYNTHESIZER VOICES
+        // ═══════════════════════════════════════════════════════════════════
+
+        // SUB BASS (20-80 Hz) - Deep foundation
+        function playSubBass(freq, time, duration) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+            
+            osc.type = 'sine';
+            osc.frequency.value = freq / 2; // One octave down
+            
+            filter.type = 'lowpass';
+            filter.frequency.value = 80;
+            filter.Q.value = 1;
+            
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(0.5, time + 0.02);
+            gain.gain.setValueAtTime(0.5, time + duration - 0.1);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(time);
+            osc.stop(time + duration);
+        }
+
+        // KICK DRUM (30-150 Hz sweep)
+        function playKick(time) {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(150, time);
+            osc.frequency.exponentialRampToValueAtTime(30, time + 0.15);
+            
+            gain.gain.setValueAtTime(0.8, time);
+            gain.gain.exponentialRampToValueAtTime(0.01, time + 0.4);
+            
+            osc.connect(gain);
+            gain.connect(masterGain);
+            
+            osc.start(time);
+            osc.stop(time + 0.5);
+            
+            // Click transient
+            const click = audioCtx.createOscillator();
+            const clickGain = audioCtx.createGain();
+            click.type = 'square';
+            click.frequency.value = 1000;
+            clickGain.gain.setValueAtTime(0.1, time);
+            clickGain.gain.exponentialRampToValueAtTime(0.001, time + 0.01);
+            click.connect(clickGain);
+            clickGain.connect(masterGain);
+            click.start(time);
+            click.stop(time + 0.02);
+        }
+
+        // HI-HAT (6-16kHz) - High shimmer
+        function playHat(time, open = false) {
+            const bufferSize = audioCtx.sampleRate * 0.1;
+            const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+            const data = buffer.getChannelData(0);
+            
+            for (let i = 0; i < bufferSize; i++) {
+                data[i] = Math.random() * 2 - 1;
+            }
+            
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            
+            const hipass = audioCtx.createBiquadFilter();
+            hipass.type = 'highpass';
+            hipass.frequency.value = 7000;
+            
+            const bandpass = audioCtx.createBiquadFilter();
+            bandpass.type = 'bandpass';
+            bandpass.frequency.value = 10000;
+            bandpass.Q.value = 1;
+            
+            const gain = audioCtx.createGain();
+            const decay = open ? 0.2 : 0.05;
+            gain.gain.setValueAtTime(0.15, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + decay);
+            
+            noise.connect(hipass);
+            hipass.connect(bandpass);
+            bandpass.connect(gain);
+            gain.connect(masterGain);
+            
+            noise.start(time);
+            noise.stop(time + decay + 0.01);
+        }
+
+        // PAD SYNTH (200-4000 Hz) - Ambient wash
+        function playPad(chord, time, duration) {
+            chord.forEach((degree, i) => {
+                const freq = noteToFreq(degree, 1);
+                
+                // Multiple detuned oscillators for richness
+                [-6, 0, 6].forEach(detune => {
+                    const osc = audioCtx.createOscillator();
+                    const gain = audioCtx.createGain();
+                    const filter = audioCtx.createBiquadFilter();
+                    
+                    osc.type = 'sawtooth';
+                    osc.frequency.value = freq;
+                    osc.detune.value = detune + Math.random() * 4 - 2;
+                    
+                    filter.type = 'lowpass';
+                    filter.frequency.value = 800 + Math.random() * 400;
+                    filter.Q.value = 2;
+                    
+                    // Slow attack, slow release
+                    gain.gain.setValueAtTime(0, time);
+                    gain.gain.linearRampToValueAtTime(0.06, time + 0.8);
+                    gain.gain.setValueAtTime(0.06, time + duration - 1);
+                    gain.gain.linearRampToValueAtTime(0, time + duration);
+                    
+                    osc.connect(filter);
+                    filter.connect(gain);
+                    gain.connect(reverbGain);
+                    gain.connect(masterGain);
+                    
+                    osc.start(time);
+                    osc.stop(time + duration + 0.1);
+                });
+            });
+        }
+
+        // MELODIC LEAD (300-2000 Hz)
+        function playMelody(degree, time, duration) {
+            const freq = noteToFreq(degree, 1);
+            
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+            
+            osc1.type = 'triangle';
+            osc1.frequency.value = freq;
+            
+            osc2.type = 'sine';
+            osc2.frequency.value = freq * 2;
+            
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(2000, time);
+            filter.frequency.exponentialRampToValueAtTime(600, time + duration);
+            filter.Q.value = 4;
+            
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(0.12, time + 0.02);
+            gain.gain.setValueAtTime(0.1, time + duration * 0.7);
+            gain.gain.linearRampToValueAtTime(0, time + duration);
+            
+            osc1.connect(filter);
+            osc2.connect(filter);
+            filter.connect(gain);
+            gain.connect(reverbGain);
+            gain.connect(masterGain);
+            
+            osc1.start(time);
+            osc2.start(time);
+            osc1.stop(time + duration + 0.1);
+            osc2.stop(time + duration + 0.1);
+        }
+
+        // TEXTURE/SHIMMER (4-12kHz) - High frequency atmosphere
+        function playShimmer(time) {
+            const bufferSize = audioCtx.sampleRate * 2;
+            const buffer = audioCtx.createBuffer(2, bufferSize, audioCtx.sampleRate);
+            
+            for (let ch = 0; ch < 2; ch++) {
+                const data = buffer.getChannelData(ch);
+                for (let i = 0; i < bufferSize; i++) {
+                    data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+                }
+            }
+            
+            const noise = audioCtx.createBufferSource();
+            noise.buffer = buffer;
+            
+            const hipass = audioCtx.createBiquadFilter();
+            hipass.type = 'highpass';
+            hipass.frequency.value = 4000;
+            
+            const gain = audioCtx.createGain();
+            gain.gain.setValueAtTime(0, time);
+            gain.gain.linearRampToValueAtTime(0.03, time + 0.5);
+            gain.gain.setValueAtTime(0.03, time + 1.5);
+            gain.gain.linearRampToValueAtTime(0, time + 2);
+            
+            noise.connect(hipass);
+            hipass.connect(gain);
+            gain.connect(reverbGain);
+            
+            noise.start(time);
+            noise.stop(time + 2.1);
+        }
+
+        // ARPEGGIO (500-3000 Hz) - Melodic techno sequence
+        function playArp(degree, time, duration) {
+            const freq = noteToFreq(degree, 1);
+            
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            const filter = audioCtx.createBiquadFilter();
+            
+            osc.type = 'square';
+            osc.frequency.value = freq;
+            
+            filter.type = 'lowpass';
+            filter.frequency.setValueAtTime(3000, time);
+            filter.frequency.exponentialRampToValueAtTime(500, time + duration);
+            filter.Q.value = 8;
+            
+            gain.gain.setValueAtTime(0.08, time);
+            gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
+            
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(reverbGain);
+            gain.connect(masterGain);
+            
+            osc.start(time);
+            osc.stop(time + duration + 0.01);
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // SEQUENCER
+        // ═══════════════════════════════════════════════════════════════════
+
+        const STEPS_PER_BAR = 16;
+        let barCount = 0;
+
+        // Generative melody patterns
+        function generateMelodyPattern() {
+            const pattern = [];
+            const chordDegrees = CHORD_PROG[barCount % 4];
+            
+            for (let i = 0; i < 16; i++) {
+                if (Math.random() < 0.25) {
+                    const baseNote = chordDegrees[Math.floor(Math.random() * chordDegrees.length)];
+                    const variation = Math.floor(Math.random() * 3) - 1;
+                    pattern.push(baseNote + variation);
+                } else {
+                    pattern.push(null);
+                }
+            }
+            return pattern;
+        }
+
+        // Arpeggio patterns
+        function generateArpPattern() {
+            const pattern = [];
+            const chordDegrees = CHORD_PROG[barCount % 4];
+            const arpStyle = Math.floor(Math.random() * 3);
+            
+            for (let i = 0; i < 16; i++) {
+                if (arpStyle === 0) {
+                    // Up pattern
+                    pattern.push(chordDegrees[i % chordDegrees.length]);
+                } else if (arpStyle === 1) {
+                    // Up-down
+                    const idx = i % 6;
+                    const upDown = [0, 1, 2, 2, 1, 0];
+                    pattern.push(chordDegrees[upDown[idx] % chordDegrees.length]);
+                } else {
+                    // Random from chord
+                    pattern.push(chordDegrees[Math.floor(Math.random() * chordDegrees.length)]);
+                }
+            }
+            return pattern;
+        }
+
+        let melodyPattern = [];
+        let arpPattern = [];
+
+        function scheduleNote() {
+            const secondsPerBeat = 60.0 / bpm;
+            const secondsPerStep = secondsPerBeat / 4;
+            
+            while (nextNoteTime < audioCtx.currentTime + 0.1) {
+                const step = currentStep % STEPS_PER_BAR;
+                const time = nextNoteTime;
+                
+                // New bar - regenerate patterns
+                if (step === 0) {
+                    melodyPattern = generateMelodyPattern();
+                    arpPattern = generateArpPattern();
+                    
+                    // Pad chord (every bar)
+                    const chord = CHORD_PROG[barCount % 4];
+                    playPad(chord, time, secondsPerBeat * 4);
+                    
+                    // Sub bass root
+                    playSubBass(noteToFreq(chord[0], -1), time, secondsPerBeat * 2);
+                    
+                    // Occasional shimmer
+                    if (Math.random() < 0.3) {
+                        playShimmer(time);
+                    }
+                    
+                    barCount++;
+                }
+                
+                // Kick on beats 1, 5, 9, 13 (4 on floor)
+                if (step % 4 === 0) {
+                    playKick(time);
+                }
+                
+                // Hi-hat pattern
+                if (step % 2 === 0) {
+                    playHat(time, step % 8 === 4);
+                }
+                
+                // Offbeat hats (quieter)
+                if (step % 2 === 1 && Math.random() < 0.4) {
+                    playHat(time, false);
+                }
+                
+                // Melody
+                if (melodyPattern[step] !== null) {
+                    playMelody(melodyPattern[step], time, secondsPerStep * 2);
+                }
+                
+                // Arpeggio (every other step)
+                if (step % 2 === 0 && barCount > 2) {
+                    playArp(arpPattern[step], time, secondsPerStep * 0.8);
+                }
+                
+                // Additional sub bass on beat 9
+                if (step === 8) {
+                    const chord = CHORD_PROG[(barCount - 1) % 4];
+                    playSubBass(noteToFreq(chord[0], -1), time, secondsPerBeat * 2);
+                }
+                
+                nextNoteTime += secondsPerStep;
+                currentStep++;
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // VISUALIZER
+        // ═══════════════════════════════════════════════════════════════════
+
+        const visualizer = document.getElementById('visualizer');
+        const NUM_BARS = 32;
+        const vizBars = [];
+
+        for (let i = 0; i < NUM_BARS; i++) {
+            const bar = document.createElement('div');
+            bar.className = 'viz-bar';
+            visualizer.appendChild(bar);
+            vizBars.push(bar);
+        }
+
+        function updateVisualizer() {
+            if (!analyser || !isPlaying) {
+                vizBars.forEach(bar => bar.style.height = '3px');
+                return;
+            }
+            
+            const dataArray = new Uint8Array(analyser.frequencyBinCount);
+            analyser.getByteFrequencyData(dataArray);
+            
+            vizBars.forEach((bar, i) => {
+                const value = dataArray[i] || 0;
+                const height = Math.max(3, (value / 255) * 70);
+                bar.style.height = height + 'px';
+            });
+            
+            if (isPlaying) {
+                requestAnimationFrame(updateVisualizer);
+            }
+        }
+
+        // ═══════════════════════════════════════════════════════════════════
+        // CONTROLS
+        // ═══════════════════════════════════════════════════════════════════
+
+        const playBtn = document.getElementById('playBtn');
+        const statusDot = document.getElementById('statusDot');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const tempoSlider = document.getElementById('tempoSlider');
+        const tempoValue = document.getElementById('tempoValue');
+
+        playBtn.addEventListener('click', async () => {
+            if (!audioCtx) {
+                initAudio();
+            }
+            
+            if (audioCtx.state === 'suspended') {
+                await audioCtx.resume();
+            }
+            
+            if (isPlaying) {
+                // Stop
+                isPlaying = false;
+                clearInterval(schedulerInterval);
+                playBtn.classList.remove('playing');
+                statusDot.classList.remove('active');
+            } else {
+                // Start
+                isPlaying = true;
+                nextNoteTime = audioCtx.currentTime;
+                currentStep = 0;
+                barCount = 0;
+                
+                schedulerInterval = setInterval(scheduleNote, 25);
+                playBtn.classList.add('playing');
+                statusDot.classList.add('active');
+                updateVisualizer();
+            }
+        });
+
+        volumeSlider.addEventListener('input', (e) => {
+            if (masterGain) {
+                masterGain.gain.value = e.target.value / 100;
+            }
+        });
+
+        tempoSlider.addEventListener('input', (e) => {
+            bpm = parseInt(e.target.value);
+            tempoValue.textContent = bpm;
+        });
+    </script>
+</body>
+</html>

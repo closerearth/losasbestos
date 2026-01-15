@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>Los Asbestos | Electronic Music & Generative Audio</title>
+    <meta name="title" content="Los Asbestos | Electronic Music & Generative Audio">
+    <meta name="description" content="Los Asbestos - Electronic music producer and developer. That magic mineral. Generative techno, dark ambient, and experimental audio works.">
+    <meta name="keywords" content="Los Asbestos, electronic music, generative techno, dark techno, experimental music, music production, asbestos, magic mineral">
+    <meta name="author" content="Los Asbestos">
+    <meta name="language" content="English">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://losasbestos.com/">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#ff5500">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://losasbestos.com/">
+    <meta property="og:title" content="Los Asbestos | Electronic Music & Generative Audio">
+    <meta property="og:description" content="That magic mineral. Generative techno, dark ambient, and experimental audio works.">
+    <meta property="og:site_name" content="Los Asbestos">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Los Asbestos | Electronic Music">
+    <meta name="twitter:description" content="That magic mineral. Generative techno and experimental audio.">
+    <meta name="twitter:site" content="@losasbestos">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600&family=Spectral:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* 1999 Cartoon Colors - Bold & Playful */
+            --parchment: #f4ede4;
+            --parchment-dark: #e8dfd3;
+            --ink: #1a1a1a;
+            --fire-orange: #ff5500;
+            --fire-gold: #ffcc00;
+            --fire-red: #ff3333;
+            --ember: #ff6b35;
+            --cartoon-purple: #cc00ff;
+            --cartoon-cyan: #00ffff;
+            --cartoon-green: #00ff88;
+            
+            /* 2050 Ultra-Realistic - Depth & Holographic */
+            --deep-night: #0a0d12;
+            --mystic-blue: #00d4ff;
+            --thorn: #1a1f2e;
+            --holographic-pink: #ff00c8;
+            --holographic-blue: #0099ff;
+            --metallic-silver: #c8d0e0;
+            --metallic-gold: #ffd700;
+            
+            /* Asbestos Gray (referencing the pun) */
+            --asbestos-gray: #7a8b8b;
+            --toxic-green: #4a5;
+            --warning-orange: #f72;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 20px;
+        }
+
+        body {
+            min-height: 100vh;
+            background: 
+                radial-gradient(ellipse at 20% 50%, rgba(255, 204, 0, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 212, 255, 0.08) 0%, transparent 50%),
+                linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0f0f0f 100%);
+            font-family: 'Space Mono', monospace;
+            color: #ddd;
+            overflow-x: hidden;
+            position: relative;
+            padding: 3rem 2rem;
+        }
+        
+        /* Texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.03;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--fire-orange);
+            text-shadow: 0 0 10px rgba(255, 85, 0, 0.3);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 400;
+            margin-bottom: 0;
+            letter-spacing: 0.1em;
+            text-transform: lowercase;
+        }
+
+        .albums-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 4rem 3rem;
+            margin: 4rem 0 6rem;
+            perspective: 1200px;
+        }
+
+        .album-card {
+            position: relative;
+            width: 300px;
+            height: 190px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+            border: 3px solid #333;
+            border-radius: 10px;
+            padding: 1.4rem 1.2rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 
+                0 12px 24px rgba(0, 0, 0, 0.6),
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            transform-style: preserve-3d;
+            cursor: pointer;
+        }
+
+        .album-card::before {
+            content: '';
+            position: absolute;
+            top: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 210px;
+            height: 75px;
+            background: rgba(200, 200, 200, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 2px;
+            box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Tape reels */
+        .album-card::after {
+            content: '';
+            position: absolute;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 240px;
+            height: 45px;
+            background: 
+                radial-gradient(circle at 30% 50%, transparent 18px, rgba(60, 60, 60, 0.7) 18px, rgba(60, 60, 60, 0.7) 26px, transparent 26px),
+                radial-gradient(circle at 70% 50%, transparent 18px, rgba(60, 60, 60, 0.7) 18px, rgba(60, 60, 60, 0.7) 26px, transparent 26px);
+            opacity: 0.7;
+        }
+
+        .album-card:hover {
+            transform: translateY(-12px) rotateX(8deg) scale(1.05);
+            box-shadow: 
+                0 20px 40px rgba(255, 85, 0, 0.4),
+                0 0 30px rgba(255, 85, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            border-color: var(--fire-orange);
+        }
+
+        /* Cassette label area */
+        .cassette-label {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .album-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 0.4rem;
+        }
+
+        .album-title {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.6rem;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+            letter-spacing: 0.03em;
+        }
+
+        .album-description {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.6);
+            line-height: 1.5;
+            margin-top: 0.4rem;
+        }
+
+        .album-link {
+            position: absolute;
+            bottom: 10px;
+            right: 14px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--fire-orange);
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            z-index: 3;
+        }
+
+        .album-card:hover .album-link {
+            color: var(--fire-gold);
+            text-shadow: 0 0 12px rgba(255, 204, 0, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Cassette screw details */
+        .cassette-screw {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(200, 200, 200, 0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .cassette-screw.tl { top: 8px; left: 10px; }
+        .cassette-screw.tr { top: 8px; right: 10px; }
+        .cassette-screw.bl { bottom: 8px; left: 10px; }
+        .cassette-screw.br { bottom: 8px; right: 10px; }
+
+        footer {
+            text-align: center;
+            margin-top: 6rem;
+            padding: 3rem 0 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.3);
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footnote {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.65rem;
+            color: rgba(255, 255, 255, 0.25);
+            line-height: 1.6;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .footnote strong {
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            html {
+                font-size: 18px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .albums-list {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .album-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Los Asbestos</h1>
+            <p class="subtitle">That magic mineral</p>
+        </header>
+
+        <div class="albums-list">
+            <a href="01_Hinoeuma/" class="album-card">
+                <div class="cassette-screw tl"></div>
+                <div class="cassette-screw tr"></div>
+                <div class="cassette-screw bl"></div>
+                <div class="cassette-screw br"></div>
+                <div class="cassette-label">
+                    <div>
+                        <div class="album-number">K7-01</div>
+                        <div class="album-title">HINOEUMA</div>
+                    </div>
+                    <div class="album-description">
+                        Generative dark techno. Year of the Fire Horse (2026-2027). Industrial synthesis + jungle ambience.
+                    </div>
+                </div>
+                <span class="album-link">PLAY</span>
+            </a>
+
+            <a href="02_Cigarette-Filters/" class="album-card">
+                <div class="cassette-screw tl"></div>
+                <div class="cassette-screw tr"></div>
+                <div class="cassette-screw bl"></div>
+                <div class="cassette-screw br"></div>
+                <div class="cassette-label">
+                    <div>
+                        <div class="album-number">K7-02</div>
+                        <div class="album-title">CIGARETTE FILTERS</div>
+                    </div>
+                    <div class="album-description">
+                        Experimental audio. Filtered noise, granular textures. Digital decay and alien artifacts.
+                    </div>
+                </div>
+                <span class="album-link">PLAY</span>
+            </a>
+
+            <a href="03_Asbestos-Man/" class="album-card">
+                <div class="cassette-screw tl"></div>
+                <div class="cassette-screw tr"></div>
+                <div class="cassette-screw bl"></div>
+                <div class="cassette-screw br"></div>
+                <div class="cassette-label">
+                    <div>
+                        <div class="album-number">K7-03</div>
+                        <div class="album-title">ASBESTOS-MAN</div>
+                    </div>
+                    <div class="album-description">
+                        Character study. Industrial hero, toxic protector. Prof. Orson Kasloff mythology.
+                    </div>
+                </div>
+                <span class="album-link">PLAY</span>
+            </a>
+        </div>
+
+        <footer>
+            <div>by Los Asbestos, 2026. Rights to distribute in support of the commons.</div>
+            <div class="footnote">
+                <strong>Asbestos</strong> — once called "the magic mineral" for its remarkable properties: fire-resistant, 
+                strong, flexible, and abundant. It found its way into everything from insulation to brake pads, 
+                becoming a symbol of industrial progress and modern convenience. Today, we know asbestos carries 
+                a darker legacy. But the name remains, a play on words that acknowledges both the material's 
+                industrial mythology and its complex reality. <strong>Los Asbestos</strong> is music that works 
+                with those contradictions — generative, industrial, sometimes beautiful, sometimes unsettling, 
+                always evolving. Like the mineral itself, these tracks are built from layers: synthetic textures, 
+                generative patterns, digital artifacts that accumulate over time. They resist easy categorization, 
+                finding strength in their hybrid nature.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
